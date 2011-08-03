@@ -1,8 +1,9 @@
 
 {
-	"name": "getgummed.js",
-  	"version": "0.3.0",
-  	"dependencies": {
-    	"express": "2.2.0"
+	"name":"bkln",
+  	"version":"0.3.0",
+  	"dependencies":{
+    	"express":"2.2.0",
+    	"nodemon":"0.5.3"
   	}
 }
