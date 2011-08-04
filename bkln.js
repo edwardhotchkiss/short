@@ -18,39 +18,70 @@ var app = express.createServer();
 
 var db = new sqlite.Database();
 
-db.open("bkln.db", function (error) {
+db.open("./data/bkln.db", function (error) {
   	if (error) {
-      	console.log("");
       	throw error;
   	};
-  	db.execute(
-  		"CREATE TABLE IF NOT EXISTS URL",
+  	db.execute("CREATE TABLE IF NOT EXISTS URLs (id INTEGER PRIMARY KEY, key TEXT UNIQUE, URL TEXT, hits INTEGER);",
     	function (error, rows) {
         	if (error) {
         		throw error;
-        	} else {
-        		console.log("Table `URLs` Created");
-        	}
+        	};
     	}
     );
 });
 
 app.configure(function(){
-  	//app.use(express.static(__dirname + "/public"));
+  	app.use(express.static(__dirname + "/public"));
   	app.use(express.errorHandler());
 });
 
 app.get("/", function(request, response) {
-	response.send("bkln::index")
+	response.send("bkln::index");
+});
+
+app.get("/urls", function(request, response){
+  	response.writeHead(200, { "Content-Type": "text/html" });
+  	db.execute("SELECT * from URLs;",
+  		function (error, rows) {
+  			if (error) {
+  				throw error;
+  			} else {
+  				response.write("<h1>URLs</h1>\n");
+  				response.write("<table>\n");
+  				for (var i = 0; i < rows.length; i++) {
+  					response.write("<tr>\n");
+  					response.write("<td>" + rows[i].id + "</td>\n");
+  					response.write("<td>" + rows[i].key + "</td>\n");
+  					response.write("<td>" + rows[i].URL + "</td>\n");
+  					response.write("<td>" + rows[i].hits + "</td>\n");
+  					response.write("</tr>");
+  				};
+  				response.write("</table>\n");
+  				response.end();
+  			};
+  		}
+  	);
 });
 
 app.get("/:key", function(request, response) {
 	var key = request.param("key");
-	console.log("key:"+key);
-	if (key == "g") {
-		var URL = "http://google.com";
-		response.send("", {"Location":URL}, 301);
-	}
+	db.execute("SELECT * from URLs WHERE key == '" + key + "';",
+		function (error, rows) {
+			if (error) {
+				throw error;
+			} else {
+				if (rows.length === 1) {
+					var URL = rows[0].URL;
+					var hits = rows[0].hits;
+					response.send("", {"Location":URL}, 301);
+				} else {
+					var URL = "http://bkln.me/";
+					response.send("", {"Location":URL}, 301);
+				};
+			};
+		}
+	);
 });
 
 app.listen(3001, "127.0.0.1");
