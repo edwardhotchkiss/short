@@ -12,8 +12,28 @@ var sys = require("sys");
 var http = require("http");
 var express = require("express");
 var querystring = require("querystring");
+var sqlite = require("node-sqlite");
 
-var app = require("express").createServer();
+var app = express.createServer();
+
+var db = new sqlite.Database();
+
+db.open("bkln.db", function (error) {
+  	if (error) {
+      	console.log("");
+      	throw error;
+  	};
+  	db.execute(
+  		"CREATE TABLE IF NOT EXISTS URL",
+    	function (error, rows) {
+        	if (error) {
+        		throw error;
+        	} else {
+        		console.log("Table `URLs` Created");
+        	}
+    	}
+    );
+});
 
 app.configure(function(){
   	//app.use(express.static(__dirname + "/public"));
@@ -21,7 +41,7 @@ app.configure(function(){
 });
 
 app.get("/", function(request, response) {
-	response.send("bkln:index")
+	response.send("bkln::index")
 });
 
 app.get("/:key", function(request, response) {
