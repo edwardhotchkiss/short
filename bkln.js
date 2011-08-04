@@ -34,13 +34,17 @@ db.open("./data/bkln.db", function (error) {
 
 app.configure(function(){
   	app.use(express.static(__dirname + "/public"));
+  	app.set("views", __dirname + "/views");
+  	app.set("view engine", "ejs");
   	app.use(express.errorHandler());
 });
 
 app.get("/", function(request, response) {
-	response.writeHead(200, { "Content-Type": "text/html" });
-	response.write("BKLN.ME");
-	response.end();
+	response.render("index", { 
+		locals: {
+			something : []
+		}
+	});
 });
 
 app.get("/urls", function(request, response) {
