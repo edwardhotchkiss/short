@@ -132,7 +132,7 @@ function updateHits(key) {
 };
 
 function insertKey(key, url) {
-	var SQL = "INSERT INTO URLs VALUES ('"+key+"', '" +url+"', 0);"
+	var SQL = "INSERT INTO URLs (key, URL, hits) VALUES ('"+key+"', '" +url+"', 0);"
 	db.execute(SQL,
 		function (error, rows) {
 			if (error) {
