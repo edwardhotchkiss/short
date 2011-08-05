@@ -26,11 +26,16 @@
 </head>
 <body>
 	<div id="container" data-role="field-contain">
+		<h1>BKLN: URL Shortener</h1>
 		<form id="create" action="/create" method="post">
-			<input type="text" name="url" id="url" placeholder="Enter URL..." />
-			<input type="submit" id="send" name="send" value="shorten" />
+			<fieldset>
+				<input type="text" name="url" id="url" placeholder="Enter URL..." />
+				<input type="button" id="send" name="send" value="shorten" />
+			</fieldset>
 		</form>
+		<%-body%>
 	</div>
-	<%-body%>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
 </body>
 </html>
