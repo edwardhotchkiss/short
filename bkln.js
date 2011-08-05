@@ -13,7 +13,6 @@ var http = require("http");
 var express = require("express");
 var querystring = require("querystring");
 var sqlite = require("node-sqlite");
-var stack = require("stack");
 
 var app = express.createServer();
 
@@ -33,7 +32,7 @@ db.open("./data/bkln.db", function (error) {
 	};
 });
 
-app.configure(function(){
+app.configure(function() {
   	app.use(express.static(__dirname + "/public"));
   	app.set("views", __dirname + "/views");
   	app.set("view engine", "ejs");
@@ -41,26 +40,23 @@ app.configure(function(){
 });
 
 app.get("/", function(request, response) {
-	stack.push();
-	
-	/*peddler.peddle(function() {
-		db.execute("SELECT id FROM URLs;", this);
-	}).peddle(function(error, rows) {
+	function finish() {
+		response.render("index", {
+			locals : {
+				URLsShortened : shortened
+			}
+		});
+	};
+	var shortened;
+	var callback = function(error, rows) {
 		if (error) {
 			throw error;
 		} else {
 			shortened = rows.length;
-			console.log("seq!!!!!");
+			finish();
 		};
-	});
-	var SQL = "SELECT SUM(hit_count) FROM URLs";
-	var served = 0;
-	response.render("index", {
-		locals : {
-			URLsShortened : shortened,
-			TinyURLsServed : served
-		}
-	});*/
+	};
+	db.execute("SELECT id FROM URLs;", callback);
 });
 
 app.get("/urls", function(request, response) {
@@ -98,6 +94,11 @@ function updateHits(key) {
 	);
 };
 
+app.post("/create", function(request, response) {
+	var url = request.param("url");
+	console.log(generateRandomKey(3));
+});
+
 app.get("/:key", function(request, response) {
 	var key = request.param("key");
 	db.execute("SELECT * from URLs WHERE key == '"+key+"';",
@@ -118,6 +119,25 @@ app.get("/:key", function(request, response) {
 		}
 	);
 });
+
+function checkURL(url) {
+	console.log("checking if url exists: " + url);
+};
+
+function checkUniqueKey(key) {
+	console.log("checking key: " + key);
+};
+
+function generateRandomKey(len) {
+	len = len || 3;
+    charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var randomString = "";
+    for (var i = 0; i < len; i++) {
+        var randomPoz = Math.floor(Math.random() * charSet.length);
+        randomString += charSet.substring(randomPoz, randomPoz + 1);
+    };
+    return randomString;
+};
 
 app.listen(3000, "127.0.0.1");
 
