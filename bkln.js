@@ -14,6 +14,7 @@ var express = require("express");
 var querystring = require("querystring");
 var sqlite = require("node-sqlite");
 
+
 var app = express.createServer();
 
 var db = new sqlite.Database();
@@ -36,6 +37,7 @@ app.configure(function() {
   	app.use(express.static(__dirname + "/public"));
   	app.set("views", __dirname + "/views");
   	app.set("view engine", "ejs");
+  	app.use(express.bodyParser());
   	app.use(express.errorHandler());
 });
 
@@ -83,21 +85,11 @@ app.get("/urls", function(request, response) {
   	);
 });
 
-function updateHits(key) {
-	var SQL = "UPDATE URLs SET hits=hits+1 WHERE key == '"+key+"';";
-	db.execute(SQL,
-		function (error, rows) {
-			if (error) {
-				throw error;
-			};
-		}
-	);
-};
-
 app.post("/create", function(request, response) {
 	var url = request.param("url");
-	var key = generateRandomKey(3);
+	var key = generateRandomKey(4);
 	var shortened = "http://bkln.me/" + key;
+	insertKey(key, url);
 	var responseJSON = {
 		key : key,
 		shortened: shortened
@@ -128,16 +120,29 @@ app.get("/:key", function(request, response) {
 	);
 });
 
-function checkURL(url) {
-	console.log("checking if url exists: " + url);
+function updateHits(key) {
+	var SQL = "UPDATE URLs SET hits=hits+1 WHERE key == '"+key+"';";
+	db.execute(SQL,
+		function (error, rows) {
+			if (error) {
+				throw error;
+			};
+		}
+	);
 };
 
-function checkUniqueKey(key) {
-	console.log("checking key: " + key);
+function insertKey(key, url) {
+	var SQL = "INSERT INTO URLs VALUES ('"+key+"', '" +url+"', 0);"
+	db.execute(SQL,
+		function (error, rows) {
+			if (error) {
+				throw error;
+			};
+		}
+	);
 };
 
 function generateRandomKey(len) {
-	len = len || 3;
     charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     var randomString = "";
     for (var i = 0; i < len; i++) {

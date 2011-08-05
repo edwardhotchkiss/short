@@ -33,6 +33,15 @@ FSR.namespace = function(ns_string) {
 };
 
 /*
+validate a URL
+*/
+
+FSR.isUrl = function(url) {
+	var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+	return regexp.test(url);
+}
+
+/*
 Movement specific to FSR
 @namespace FSR.movement
 @params void(0)
@@ -40,10 +49,13 @@ Movement specific to FSR
 */
 
 $("#send").click(function() {	
+	if (!FSR.isUrl($("#url").val())) {
+		alert("Invalid URL!");
+		return false;
+	};
 	var postData = {};
 	postData.url = $("#url").val();
 	var returnCall = function(response) {
-		console.log(response);
 		$("#create input[type=text]").val("");
 		setTimeout(function() {
 			$("#url").val(response.shortened);
