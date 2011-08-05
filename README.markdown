@@ -1,7 +1,7 @@
 
-# bkln
+# bkln / node.js tiny url creator
 
-## node.js tiny url creator
+### uses
 
 	* express
 	* node-sqlite
