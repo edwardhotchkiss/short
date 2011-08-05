@@ -13,7 +13,7 @@ var http = require("http");
 var express = require("express");
 var querystring = require("querystring");
 var sqlite = require("node-sqlite");
-var peddle = require("peddle");
+var stack = require("stack");
 
 var app = express.createServer();
 
@@ -41,8 +41,9 @@ app.configure(function(){
 });
 
 app.get("/", function(request, response) {
-	var shortened;
-	peddle.step(function() {
+	stack.push();
+	
+	/*peddler.peddle(function() {
 		db.execute("SELECT id FROM URLs;", this);
 	}).peddle(function(error, rows) {
 		if (error) {
@@ -52,14 +53,14 @@ app.get("/", function(request, response) {
 			console.log("seq!!!!!");
 		};
 	});
-	//var SQL = "SELECT SUM(hit_count) FROM URLs";
+	var SQL = "SELECT SUM(hit_count) FROM URLs";
 	var served = 0;
 	response.render("index", {
 		locals : {
 			URLsShortened : shortened,
 			TinyURLsServed : served
 		}
-	});
+	});*/
 });
 
 app.get("/urls", function(request, response) {

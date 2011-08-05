@@ -1,12 +1,12 @@
 
 {
-	"name":"bkln",
-  	"version":"0.3.0",
-  	"dependencies":{
-    	"express":"2.2.0",
-    	"nodemon":"0.5.3",
-    	"sqlite":"1.0.4",
-    	"ejs":"0.4.3",
-    	"peddle":"0.1.0"
-  	}
+"name":"bkln",
+   "version":"0.3.0",
+   "dependencies":{
+     "express":"2.2.0",
+     "nodemon":"0.5.3",
+     "sqlite":"1.0.4",
+     "ejs":"0.4.3",
+     "peddle":"0.1.0"
+   }
 }
