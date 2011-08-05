@@ -96,7 +96,15 @@ function updateHits(key) {
 
 app.post("/create", function(request, response) {
 	var url = request.param("url");
-	console.log(generateRandomKey(3));
+	var key = generateRandomKey(3);
+	var shortened = "http://bkln.me/" + key;
+	var responseJSON = {
+		key : key,
+		shortened: shortened
+	};
+	response.writeHead(200, { "Content-Type": "text/json" });
+	response.write(JSON.stringify(responseJSON));
+	response.end();
 });
 
 app.get("/:key", function(request, response) {
@@ -109,11 +117,11 @@ app.get("/:key", function(request, response) {
 				if (rows.length === 1) {
 					var URL = rows[0].URL;
 					updateHits(key);				
-					response.send("", {"Location":URL}, 302);
+					response.send("", {"Location":URL}, 301);
 				} else {
 					var URL = "http://bkln.me/";
 					updateHits("bkln");
-					response.send("", {"Location":URL}, 302);
+					response.send("", {"Location":URL}, 301);
 				};
 			};
 		}
