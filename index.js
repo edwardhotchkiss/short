@@ -17,39 +17,13 @@ var Provider = require("./lib/Provider.js");
 
 var app = express.createServer();
 
-var db = new mongodb.Db("bkln", new mongodb.Server("50.57.122.105", 27017, {}), {});
+var DB = new mongodb.Db("bkln", new mongodb.Server("50.57.122.105", 27017, {}), {});
 
-db.addListener("error", function(error) {
+DB.addListener("error", function(error) {
  	throw error;
 });
 
-db.open(function(p_db) {
-	db.createCollection("URLs", function(error, collection) {
-		if (error) {
-			throw error;
-		}
-		collection.ensureIndex([["URL", 1]], true, function(error) {
-			if (error) {
-				throw error;
-			}
-		});
-		collection.ensureIndex([["key", 1]], true, function(error) {
-			if (error) {
-				throw error;
-			}
-		});
-		collection.count(function(error, count) {
-			if (error) {
-				console.log("collection count: "+count);
-				throw error;
-			}
-		});
-		app.set("collection", collection);
-	});
-});
-
 app.configure(function() {
-	app.use(express.methodOverride());
   	app.use(express.static(__dirname + "/public"));
   	app.set("views", __dirname + "/views");
   	app.set("view engine", "ejs");
@@ -67,12 +41,31 @@ app.configure("production", function() {
 
 var URLProvider = new Provider();
 
+app.get("/", function(request, response) {
+	response.render("index", {
+		locals:{}
+	});
+});
+
 app.get("/urls", function(request, response) {
   	URLProvider.findAll(function(error, docs) {
       	response.send(docs);
  	});
 });
 
-app.listen(3000, "127.0.0.1");
+app.post("/create", function(request, response) {
+	URLProvider.save({
+        url: request.param("url")
+    }, function(error, docs) {
+    	responseData = {
+    		shortened : "http://bkln.me/XXXX?/"
+    	}
+    	response.writeHead(200, { "Content-Type": "text/json" });
+        response.write(JSON.stringify(responseData));
+        response.end();
+    });
+});
+
+app.listen(80, "127.0.0.1");
 
 /* EOF */
