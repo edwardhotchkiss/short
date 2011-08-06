@@ -12,16 +12,9 @@ var sys = require("sys");
 var http = require("http");
 var express = require("express");
 var querystring = require("querystring");
-var mongodb = require("node-mongodb-native/lib/mongodb");
 var Provider = require("./lib/Provider.js");
 
 var app = express.createServer();
-
-var DB = new mongodb.Db("bkln", new mongodb.Server("50.57.122.105", 27017, {}), {});
-
-DB.addListener("error", function(error) {
- 	throw error;
-});
 
 app.configure(function() {
   	app.use(express.static(__dirname + "/public"));
@@ -39,7 +32,7 @@ app.configure("production", function() {
   	app.use(express.errorHandler());
 });
 
-var URLProvider = new Provider();
+var URLProvider = new Provider("50.57.122.105", 27017);
 
 app.get("/", function(request, response) {
 	response.render("index", {
