@@ -18,8 +18,13 @@ BKLN is a node.js tiny url creator with some really sweet modules and unit tests
 ### installation
 
 ```bash
-$ git clone git@github.com:forsurerad/bkln.git
-$ cd bkln
+$ git clone git@github.com:forsurerad/BKLN.git
+$ cd BKLN
 $ npm install
-$ nodemon bkln.js
+$ nodemon index.js
 ```
+
+### extra
+
+- [http://bkln.me/](http://bkln.me/)
+- [email me](hi@forsurerad.com)
