@@ -10,6 +10,7 @@ BKLN is a node.js tiny url creator with some really sweet modules under the hood
 
 * **express**
 * **mongoose**
+* _espresso_
 * node-mongodb-native
 * nodemon
 * ejs

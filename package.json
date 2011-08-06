@@ -7,6 +7,7 @@
      "nodemon":"0.5.3",
      "mongodb":"0.9.6-9",
      "ejs":"0.4.3",
-     "mongoose":"1.8.0"
+     "mongoose":"1.8.0",
+     "express":"2.2.0"
    }
 }
