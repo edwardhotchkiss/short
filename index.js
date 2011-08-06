@@ -61,6 +61,18 @@ app.post("/create", function(request, response) {
     });
 });
 
+app.get("/:hash", function(request, response) {
+    URLProvider.findByHash(request.params.hash, function(error, url) {
+    	if (url) {
+    		var URL = url.url;
+    		response.send("", {"Location":URL}, 301);
+    	} else {
+    		var URL = "http://bkln.me/";
+    		response.send("", {"Location":URL}, 301);
+    	}
+    });
+});
+
 app.listen(80, "127.0.0.1");
 
 /* EOF */
