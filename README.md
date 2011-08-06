@@ -1,24 +1,24 @@
 
-bkln
+BKLN
 ====
 
-## what is bkln?
+## what is BKLN?
 
-bkln is a node.js tiny url creator
+BKLN is a node.js tiny url creator with some really sweet modules under the hood
 
 ### uses
 
-* express
-* node-mongodb-native
-* _mongoose_
-* nodemon
-* ejs
+**express**
+**mongoose**
+node-mongodb-native
+nodemon
+ejs
 
 ### install
 
 ```bash
-$ git clone git@github.com:forsurerad/bkln.git
-$ cd bkln
+$ git clone git@github.com:forsurerad/BKLN.git
+$ cd BKLN
 $ npm install
-$ nodemon bkln.js
+$ nodemon index.js
 ```
