@@ -58,13 +58,19 @@ app.post("/create", function(request, response) {
 });
 
 app.get("/:hash", function(request, response) {
-    URLProvider.findByHash(request.params.hash, function(error, url) {
-    	if (url) {
-    		var URL = url.url;
-    		response.send("", {"Location":URL}, 301);
+    URLProvider.findByHash(request.params.hash, function(error, URL) {
+    	if (URL.length == 0) {
+    		var longURL = "http://bkln.me/";
+    		response.send("", {"Location":longURL}, 301); 
     	} else {
-    		var URL = "http://bkln.me/";
-    		response.send("", {"Location":URL}, 301);
+    		var id = URL[0]._id;
+    		URLProvider.updateHitsById(id, function(error) {
+    			if (error) {
+    				console.log("problem updating hits!");
+    			}
+    		});
+    		var longURL = URL[0].URL;
+    		response.send("", {"Location":longURL}, 301);
     	}
     });
 });
