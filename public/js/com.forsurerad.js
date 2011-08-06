@@ -56,7 +56,6 @@ $("#send").click(function() {
 	var postData = {};
 	postData.url = $("#url").val();
 	var returnCall = function(response) {
-		$("#create input[type=text]").val("");
 		setTimeout(function() {
 			$("#url").val(response.shortened);
 		}, 1000);	

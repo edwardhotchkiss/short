@@ -9,8 +9,6 @@
  */
 
 var express = require("express");
-var Provider = require("./lib/Provider.js");
-
 var app = express.createServer();
 
 app.configure(function() {
@@ -29,7 +27,8 @@ app.configure("production", function() {
   	app.use(express.errorHandler());
 });
 
-var URLProvider = new Provider("50.57.122.105", 27017);
+var Provider = require("./lib/Provider.js");
+var URLProvider = new Provider();
 
 app.get("/", function(request, response) {
 	response.render("index", {
@@ -45,17 +44,17 @@ app.get("/urls", function(request, response) {
 
 app.post("/create", function(request, response) {
 	URLProvider.save({
-        url: request.param("url")
-    }, function(error, urls) {
-    	var hash = urls[0].hash;
-    	var shortened = "http://bkln.me/" + hash;
-    	responseData = {
-    		shortened : shortened
-    	}
-    	response.writeHead(200, { "Content-Type": "text/json" });
-        response.write(JSON.stringify(responseData));
-        response.end();
-    });
+		url: request.param("url")
+	}, function(error, URL) {
+		var hash = URL.hash;
+		var shortened = "http://bkln.me/" + hash;
+		responseData = {
+			shortened : shortened
+		}
+		response.writeHead(200, { "Content-Type": "text/json" });
+		response.write(JSON.stringify(responseData));
+		response.end();
+	});
 });
 
 app.get("/:hash", function(request, response) {
