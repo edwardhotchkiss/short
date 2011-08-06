@@ -8,18 +8,18 @@ BKLN is a node.js tiny url creator with some really sweet modules under the hood
 
 ### modules
 
-* **express**
-* **mongoose**
-* _espresso_
-* node-mongodb-native
-* nodemon
-* ejs
+- **express**
+- **mongoose**
+- _expresso_
+- node-mongodb-native
+- nodemon
+- ejs
 
 ### installation
 
 ```bash
-$ git clone git@github.com:forsurerad/bkln.git
-$ cd bkln
-$ npm install
-$ nodemon bkln.js
+	$ git clone git@github.com:forsurerad/bkln.git
+	$ cd bkln
+	$ npm install
+	$ nodemon bkln.js
 ```
