@@ -56,9 +56,11 @@ app.get("/urls", function(request, response) {
 app.post("/create", function(request, response) {
 	URLProvider.save({
         url: request.param("url")
-    }, function(error, docs) {
+    }, function(error, urls) {
+    	var hash = urls[0].hash;
+    	var shortened = "http://bkln.me/" + hash;
     	responseData = {
-    		shortened : "http://bkln.me/XXXX?/"
+    		shortened : shortened
     	}
     	response.writeHead(200, { "Content-Type": "text/json" });
         response.write(JSON.stringify(responseData));
