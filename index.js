@@ -8,10 +8,7 @@
  *
  */
 
-var sys = require("sys");
-var http = require("http");
 var express = require("express");
-var querystring = require("querystring");
 var Provider = require("./lib/Provider.js");
 
 var app = express.createServer();
