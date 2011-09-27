@@ -38,14 +38,18 @@ ShortURL.findByHash = function(hash, callback) {
 		if (error) {
 			callback(error, null);
 		} else {
-			var id = URL[0]._id;
-			ShortURL.updateHitsById(id, function(error) {
-				if (error) {
-					callback(error, null);
-				} else {
-					callback(null, URL);
-				};
-			});
+			if (URL.length !== 0) {
+				var id = URL[0]._id;
+				ShortURL.updateHitsById(id, function(error) {
+					if (error) {
+						callback(error, null);
+					} else {
+						callback(null, URL);
+					};
+				});
+			} else {
+				callback(null, null);
+			}
 		};
 	}); 
 };
@@ -61,6 +65,13 @@ ShortURL.updateHitsById = function(id, callback) {
 		}
 	});
 };
+
+var nodeTiny = new ShortURL({
+	URL : "http://nodejs.org/",
+	hash : "kQ4c"
+});
+
+nodeTiny.save();
 
 module.exports = {
 	shortURL_schema : shortURL_schema,
