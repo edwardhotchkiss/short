@@ -12,23 +12,27 @@ $ npm install short
 ***Integrated***
 
 ```javascript
+var mongoose = require("mongoose");
 var short = require("short");
+
+mongoose.connect("mongodb://localhost/short");
 
 var URL = "http://nodejs.org/";
 
-short.save(URL, function(error, hash) {
+short.make(URL, function(error, shortURL) {
 	if (error) {
 		console.error(error);
 	} else {
-		console.log(hash);
-	}
-});
-
-short.get(hash, function(error, URL) {
-	if (error) {
-		console.error(error);
-	} else {
-		console.log(URL);
+		short.get(shortURL.hash, function(error, shortURLObject) {
+			if (error) {
+				console.error(error);
+			} else {
+				var URL = shortURLObject[0].URL
+				var hash = shortURLObject[0].hash;
+				console.log(URL, hash);
+				process.exit(1);
+			}
+		});
 	}
 });
 
