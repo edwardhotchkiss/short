@@ -2,11 +2,12 @@
     "author": "Edward Hotchkiss <e@ingk.com>",
     "name": "short",
     "description": "Generate, retieve short urls over mongoose/mongodb/express",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "repository": {
       "type": "git",
       "url": "git://github.com/edwardhotchkiss/short.git"
     },
+    "keywords": ["short", "url", "shortener", "tiny"],
     "main": "./index",
     "engines": {
       "node": "~v0.4.11"
