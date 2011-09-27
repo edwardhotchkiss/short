@@ -6,18 +6,21 @@ mongoose.connect("mongodb://localhost/short");
 
 var URL = "http://nodejs.org/";
 
-short.save(URL, function(error, hash) {
-	/*if (error) {
+short.make(URL, function(error, shortURL) {
+	if (error) {
 		console.error(error);
 	} else {
-		short.get(hash, function(error, URL) {
+		short.get(shortURL.hash, function(error, shortURLObject) {
 			if (error) {
 				console.error(error);
 			} else {
+				var URL = shortURLObject[0].URL
+				var hash = shortURLObject[0].hash;
 				console.log(URL, hash);
+				process.exit(1);
 			}
 		});
-	}*/
+	}
 });
 
 /* EOF */

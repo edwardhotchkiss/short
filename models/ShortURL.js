@@ -10,15 +10,15 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var ShortURL_Schema = {
-	id          : { type : ObjectId },
-	URL        	: { type : String },
+var shortURL_schema = {
+	id          : ObjectId,
+	URL        	: String,
 	hash        : { type : String },
 	hits        : { type : Number, default: 0 },
 	created_at  : { type : Date, default: Date.now }
 };
 
-var ShortURLSchema = new Schema(ShortURL_Schema);
+var ShortURLSchema = new Schema(shortURL_schema);
 var ShortURL = mongoose.model("ShortURL", ShortURLSchema);
 
 ShortURL.findByHash = function(hash, callback) {
@@ -27,7 +27,7 @@ ShortURL.findByHash = function(hash, callback) {
 			callback(error, null);
 		} else {
 			var id = URL[0]._id;
-			short.updateHitsById(id, function(error) {
+			ShortURL.updateHitsById(id, function(error) {
 				if (error) {
 					callback(error, null);
 				} else {
@@ -51,7 +51,7 @@ ShortURL.updateHitsById = function(id, callback) {
 };
 
 module.exports = {
-	ShortURL_Schema : ShortURL_Schema,
+	shortURL_schema : shortURL_schema,
 	ShortURLSchema : ShortURLSchema,
 	ShortURL : ShortURL
 };
