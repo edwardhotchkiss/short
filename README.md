@@ -13,15 +13,24 @@ $ npm install short
 
 ```javascript
 var short = require("short");
-var guid = require("short").guid;
 
-var URL = "http://twitter.com/kisshotch/";
-var GUID = guid(URL);
+var URL = "http://nodejs.org/";
 
-// w/ callback, just for show
-short.save(URL, GUID, function(error) {
+short.save(URL, function(error, hash) {
 	if (error) {
 		console.error(error);
+	} else {
+		console.log(hash);
 	}
 });
+
+short.get(hash, function(error, URL) {
+	if (error) {
+		console.error(error);
+	} else {
+		console.log(URL);
+	}
+});
+
+/* EOF */
 ```
