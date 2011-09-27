@@ -1,6 +1,6 @@
 
 var mongoose = require("mongoose");
-var short = require("../");
+var short = require("short");
 
 mongoose.connect("mongodb://localhost/short");
 
@@ -18,7 +18,7 @@ short.make(URL, function(error, shortURL) {
 				var hash = shortURLObject[0].hash;
 				console.log(URL, hash);
 				process.exit(1);
-			}
+			};
 		});
 	}
 });
