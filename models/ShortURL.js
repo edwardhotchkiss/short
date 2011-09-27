@@ -21,6 +21,18 @@ var shortURL_schema = {
 var ShortURLSchema = new Schema(shortURL_schema);
 var ShortURL = mongoose.model("ShortURL", ShortURLSchema);
 
+ShortURL.checkExists = function(hash, callback) {
+	var query = ShortURL.find({});
+	query.where("hash", hash);
+	query.exec(function(error, shortenedURLS) {
+		if (error) {
+			callback(error, null);
+		} else {
+			callback(null, shortenedURLS.length);
+		}
+	});
+};
+
 ShortURL.findByHash = function(hash, callback) {
 	ShortURL.find({ hash: hash }, function(error, URL) {
 		if (error) {
