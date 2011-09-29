@@ -69,6 +69,7 @@ ShortURL.updateHitsById = function(id, callback) {
 	});
 };
 
+// test
 var nodeTiny = new ShortURL({
 	URL : "http://nodejs.org/",
 	hash : "kQ4c"
