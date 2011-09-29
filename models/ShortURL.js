@@ -21,6 +21,7 @@ var shortURL_schema = {
 var ShortURLSchema = new Schema(shortURL_schema);
 var ShortURL = mongoose.model("ShortURL", ShortURLSchema);
 
+// return count, if it exists, try another
 ShortURL.checkExists = function(hash, callback) {
 	var query = ShortURL.find({});
 	query.where("hash", hash);
@@ -28,11 +29,12 @@ ShortURL.checkExists = function(hash, callback) {
 		if (error) {
 			callback(error, null);
 		} else {
-			callback(null, shortenedURLS.length);
+			callback(null, shortenedURLS);
 		}
 	});
 };
 
+// search for a URL by its hash
 ShortURL.findByHash = function(hash, callback) {
 	ShortURL.find({ hash: hash }, function(error, URL) {
 		if (error) {
@@ -54,6 +56,7 @@ ShortURL.findByHash = function(hash, callback) {
 	}); 
 };
 
+// increment hits
 ShortURL.updateHitsById = function(id, callback) {
 	ShortURL.findById(id, function (error, URL) {
 		var hits = URL.hits + 1;
@@ -73,10 +76,6 @@ var nodeTiny = new ShortURL({
 
 nodeTiny.save();
 
-module.exports = {
-	shortURL_schema : shortURL_schema,
-	ShortURLSchema : ShortURLSchema,
-	ShortURL : ShortURL
-};
+module.exports = ShortURL;
 
 /* EOF */
