@@ -33,6 +33,6 @@ var app = http.createServer(function(request, response) {
 });
 
 app.listen(8080);
-console.log("> Open http://localhost:8080/kQ4c");
+console.log("> Open http://localhost:8080/");
 
 /* EOF */
