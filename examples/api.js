@@ -1,18 +1,18 @@
 
 var mongoose = require("mongoose");
-var short = require("short");
+var short = require("../");
 
 mongoose.connect("mongodb://localhost/short");
 
 var URL = "http://nodejs.org/";
 
-short.make(URL, function(error, shortURL) {
+short.gen(URL, function(error, shortURL) {
 	if (error) {
-		console.error(error);
+		throw new Error(error);
 	} else {
 		short.get(shortURL.hash, function(error, shortURLObject) {
 			if (error) {
-				console.error(error);
+				throw new Error(error);
 			} else {
 				var URL = shortURLObject[0].URL
 				var hash = shortURLObject[0].hash;

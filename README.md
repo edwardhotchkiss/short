@@ -19,7 +19,7 @@ mongoose.connect("mongodb://localhost/short");
 
 var URL = "http://nodejs.org/";
 
-short.make(URL, function(error, shortURL) {
+short.gen(URL, function(error, shortURL) {
 	if (error) {
 		console.error(error);
 	} else {
