@@ -2,7 +2,7 @@
     "author": "Edward Hotchkiss <e@ingk.com>",
     "name": "short",
     "description": "Generate, retieve short urls over mongoose/mongodb/express",
-    "version": "0.0.9",
+    "version": "0.1.0",
     "repository": {
       "type": "git",
       "url": "git://github.com/edwardhotchkiss/short.git"
@@ -13,7 +13,7 @@
       "node": "~v0.4.11"
     },
     "dependencies": {
-      "mongoose":"2.2.1",
+      "mongoose":"2.2.2",
       "base-converter":"1.1.1"   
     }
 }
