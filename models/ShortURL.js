@@ -30,7 +30,7 @@ ShortURL.checkExists = function(hash, callback) {
 			callback(error, null);
 		} else {
 			callback(null, shortenedURLS);
-		}
+		};
 	});
 };
 
