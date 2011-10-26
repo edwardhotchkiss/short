@@ -17,6 +17,8 @@ app.configure(function() {
   	app.set("view engine", "ejs");
   	app.use(express.bodyParser());
   	app.use(express.errorHandler());
+  	app.use(express.cookieParser());
+  	app.use(express.session({ secret: "!@#Ta(0z__+" }));
 });
 
 app.configure("development", function() {
