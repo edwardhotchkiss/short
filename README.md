@@ -13,9 +13,7 @@ $ npm install short
 
 ```javascript
 var mongoose = require("mongoose");
-var short = require("short");
-
-mongoose.connect("mongodb://localhost/short");
+var short = require("short")("mongodb://localhost/short");
 
 var URL = "http://nodejs.org/";
 
@@ -43,9 +41,7 @@ short.gen(URL, function(error, shortURL) {
 ```javascript
 var http = require("http");
 var mongoose = require("mongoose");
-var short = require("short");
-
-mongoose.connect("mongodb://localhost/short");
+var short = require("short")("mongodb://localhost/short");;
 
 var app = http.createServer(function(request, response) {
 	var hash = request.url.slice(1);
