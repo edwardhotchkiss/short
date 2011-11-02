@@ -6,10 +6,7 @@ var should = require("should");
 var mongoose = require("mongoose");
 
 // short core
-var short = require("../");
-
-// connect to mongodb
-mongoose.connect("mongodb://localhost/short");
+var short = require("../")("mongodb://localhost/short");
 
 vows.describe("General Module Tests").addBatch({
   "when instantiating short" : {
