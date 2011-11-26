@@ -1,5 +1,4 @@
 
-var mongoose = require("mongoose");
 var short = require("../lib/short");
 
 short.connect("mongodb://localhost/short");
