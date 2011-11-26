@@ -9,26 +9,26 @@ var short = require("../lib/short");
 short.connect("mongodb://localhost/short");
 
 vows.describe("General Module Tests").addBatch({
-  "when instantiating short" : {
-    topic : function() { 
+  "when instantiating short":{
+    topic:function(){ 
       return short;
     },
-    "short should be a function" : function(topic) {
+    "short should be a function":function(topic) {
       topic.should.be.a("function");
     },
   },
-  "when creating and retrieving a short url" : {
-    topic : function() {
+  "when creating and retrieving a short url":{
+    topic:function() {
       var URL = "http://nodejs.org/";
       short.gen(URL, this.callback);
     },
-    "there should be no errors" : function(error, shortURL) {
+    "there should be no errors":function(error, shortURL){
       assert.isNull(error);
     },
-    "shortURL should be defined" : function(error, shortURL) {
+    "shortURL should be defined":function(error, shortURL){
       assert.isNotNull(shortURL);
     },
-    "and shortURL should be an object" : function(error, shortURL) {
+    "and shortURL should be an object":function(error, shortURL){
       shortURL.should.be.a("object");
     }
   }

@@ -1,38 +1,33 @@
 
 var http = require("http");
 var mongoose = require("mongoose");
-var short = require("short");
+
+var short = require("../lib/short");
 
 mongoose.connect("mongodb://localhost/short");
 
 var app = http.createServer(function(request, response) {
+  console.log(short);
   var hash = request.url.slice(1);
-  if (request.url === "/") {
-    response.writeHead(200, { "Content-Type" : "text/html" });
+  short.get(hash, function(error, shortURLObject) {
+    if (shortURLObject) {
+      var URL = shortURLObject[0].URL;
+      response.writeHead(302, {
+        "Location" : URL
+      });
+      response.end();
+    } else {
+      response.writeHead(200, { "Content-Type" : "text/html" });
       response.write("URL not found!");
       response.end();
-  } else {
-    short.get(hash, function(error, shortURLObject) {
-      if (error) {
-        console.error(error);
-      } else {
-        if (shortURLObject) {
-          var URL = shortURLObject[0].URL;
-          response.writeHead(302, {
-              "Location" : URL
-          });
-          response.end();
-        } else {
-          response.writeHead(200, { "Content-Type" : "text/html" });
-            response.write("URL not found!");
-            response.end();
-        }
-      };
-    });
-  }
+    }
+  });
 });
 
-app.listen(8080);
-console.log("> Open http://localhost:8080/");
+short.gen("http://nodejs.org/", function(error, shortURL) {
+  finalURL = "http://localhost:8000/" + shortURL.hash;
+  app.listen(8080);
+  console.log("> Open "+finalURL);
+});
 
 /* EOF */
