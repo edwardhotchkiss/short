@@ -8,7 +8,7 @@
     "url": "git://github.com/edwardhotchkiss/short.git"
   },
   "keywords": ["short", "url", "shortener", "tiny", "uri"],
-  "main": "./index",
+  "main": "./short",
   "engines": {
     "node": "~v0.4.11"
   },
