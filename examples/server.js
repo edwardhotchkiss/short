@@ -7,7 +7,6 @@ var short = require("../lib/short");
 mongoose.connect("mongodb://localhost/short");
 
 var app = http.createServer(function(request, response) {
-  console.log(short);
   var hash = request.url.slice(1);
   short.get(hash, function(error, shortURLObject) {
     if (shortURLObject) {
@@ -26,7 +25,7 @@ var app = http.createServer(function(request, response) {
 
 short.gen("http://nodejs.org/", function(error, shortURL) {
   finalURL = "http://localhost:8000/" + shortURL.hash;
-  app.listen(8080);
+  app.listen(8000);
   console.log("> Open "+finalURL);
 });
 
