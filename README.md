@@ -1,11 +1,5 @@
 
-# short
-
-***
-
-## NodeJS Tiny URL API
-
-***
+# short (NodeJS shortened URL API riding over MongooseJS)
 
 ### Installation
 
