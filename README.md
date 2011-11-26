@@ -1,5 +1,5 @@
 
-# short (NodeJS shortened URL API riding over MongooseJS)
+# short (NodeJS URL Shortener backed by MongooseJS)
 
 ### Installation
 

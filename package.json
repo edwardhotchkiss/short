@@ -1,7 +1,7 @@
 {
   "author": "Edward Hotchkiss <e@ingk.com>",
   "name": "short",
-  "description": "Generate & retrieve short urls over mongoose/mongodb/express",
+  "description": "NodeJS URL Shortener backed by MongooseJS",
   "version": "0.1.8",
   "repository": {
     "type": "git",
