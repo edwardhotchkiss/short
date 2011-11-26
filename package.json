@@ -2,15 +2,15 @@
   "author": "Edward Hotchkiss <e@ingk.com>",
   "name": "short",
   "description": "Generate & retrieve short urls over mongoose/mongodb/express",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "repository": {
     "type": "git",
     "url": "git://github.com/edwardhotchkiss/short.git"
   },
   "keywords": ["short", "url", "shortener", "tiny", "uri"],
   "main": "./short",
-  "engines": {
-    "node": "~v0.4.11"
+  "engines":{
+    "node":">= 0.4.11 < 0.7.0"
   },
   "dependencies": {
     "mongoose":"2.2.4",
@@ -18,8 +18,7 @@
   },
   "devDependencies":{
     "vows":"0.5.13",
-    "should":"0.3.2",
-    "request":""
+    "should":"0.3.2"
   },
   "scripts": {
     "test": "vows test/*.test.js --spec"
