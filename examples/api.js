@@ -16,7 +16,6 @@ short.gen(URL, function(error, shortURL) {
       } else {
         var URL = shortURLObject[0].URL
         var hash = shortURLObject[0].hash;
-        console.log(URL, hash);
         process.exit(1);
       };
     });

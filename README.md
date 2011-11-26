@@ -1,77 +1,82 @@
 
-short
-=====
+# short
 
-***Node.js Tiny URL generator with analytics***
+***
 
-**Setup**
+## NodeJS Tiny URL API
+
+***
+
+### Installation
 
 ```bash
 $ npm install short
+$ cd short
+$ npm install
+$ node examples/server.js
 ```
-***Basic API Usage***
+***
+
+### Basic API Usage
 
 ```javascript
 var mongoose = require("mongoose");
-var short = require("short")("mongodb://localhost/short");
+var short = require("short");
+
+short.connect("mongodb://localhost/short");
 
 var URL = "http://nodejs.org/";
 
 short.gen(URL, function(error, shortURL) {
-	if (error) {
-		console.error(error);
-	} else {
-		short.get(shortURL.hash, function(error, shortURLObject) {
-			if (error) {
-				console.error(error);
-			} else {
-				var URL = shortURLObject[0].URL
-				var hash = shortURLObject[0].hash;
-				console.log(URL, hash);
-			};
-		});
-	}
+  if (error) {
+    throw new Error(error);
+  } else {
+    short.get(shortURL.hash, function(error, shortURLObject) {
+      if (error) {
+        throw new Error(error);
+      } else {
+        var URL = shortURLObject[0].URL
+        var hash = shortURLObject[0].hash;
+        process.exit(1);
+      };
+    });
+  }
 });
-
-/* EOF */
 ```
+***
 
-***As a Server***
+### HTTP Server & API
 
 ```javascript
 var http = require("http");
 var mongoose = require("mongoose");
-var short = require("short")("mongodb://localhost/short");
+
+var short = require("short");
+
+mongoose.connect("mongodb://localhost/short");
 
 var app = http.createServer(function(request, response) {
-	var hash = request.url.slice(1);
-	if (request.url === "/") {
-		response.writeHead(200, { "Content-Type" : "text/html" });
-  		response.write("URL not found!");
-  		response.end();
-	} else {
-		short.get(hash, function(error, shortURLObject) {
-			if (error) {
-				console.error(error);
-			} else {
-				if (shortURLObject) {
-					var URL = shortURLObject[0].URL;
-					response.writeHead(302, {
-  						"Location" : URL
-					});
-					response.end();
-				} else {
-					response.writeHead(200, { "Content-Type" : "text/html" });
-  					response.write("URL not found!");
-  					response.end();
-				}
-			};
-		});
-	}
+  var hash = request.url.slice(1);
+  short.get(hash, function(error, shortURLObject) {
+    if (shortURLObject) {
+      var URL = shortURLObject[0].URL;
+      response.writeHead(302, {
+        "Location" : URL
+      });
+      response.end();
+    } else {
+      response.writeHead(200, { "Content-Type" : "text/html" });
+      response.write("URL not found!");
+      response.end();
+    }
+  });
 });
 
-app.listen(8080);
-console.log("> Open http://localhost:8080/kQ4c");
-
-/* EOF */
+short.gen("http://nodejs.org/", function(error, shortURL) {
+  finalURL = "http://localhost:8000/" + shortURL.hash;
+  app.listen(8000);
+  console.log("> Open "+finalURL);
+});
 ```
+
+***
