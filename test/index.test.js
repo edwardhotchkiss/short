@@ -1,12 +1,12 @@
 
-// testing
 var vows = require("vows");
 var assert = require("assert");
 var should = require("should");
 var mongoose = require("mongoose");
 
-// short core
-var short = require("../")("mongodb://localhost/short");
+var short = require("../lib/short");
+
+short.connect("mongodb://localhost/short");
 
 vows.describe("General Module Tests").addBatch({
   "when instantiating short" : {

@@ -1,8 +1,8 @@
 
 var mongoose = require("mongoose");
-var short = require("short");
+var short = require("../lib/short");
 
-mongoose.connect("mongodb://localhost/short");
+short.connect("mongodb://localhost/short");
 
 var URL = "http://nodejs.org/";
 
