@@ -1,6 +1,8 @@
 
 # short (NodeJS URL Shortener backed by MongooseJS)
 
+[![Build Status](https://secure.travis-ci.org/edwardhotchkiss/short.png)](http://travis-ci.org/edwardhotchkiss/short)
+
 ### Installation
 
 ```bash
@@ -14,7 +16,6 @@ $ node examples/server.js
 ### Basic API Usage
 
 ```javascript
-var mongoose = require("mongoose");
 var short = require("short");
 
 short.connect("mongodb://localhost/short");
@@ -43,7 +44,6 @@ short.gen(URL, function(error, shortURL) {
 
 ```javascript
 var http = require("http");
-var mongoose = require("mongoose");
 
 var short = require("short");
 
