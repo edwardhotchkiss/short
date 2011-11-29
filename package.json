@@ -2,7 +2,7 @@
   "author": "Edward Hotchkiss <e@ingk.com>",
   "name": "short",
   "description": "NodeJS URL Shortener backed by MongooseJS",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/edwardhotchkiss/short.git"
@@ -10,7 +10,7 @@
   "keywords": ["short", "url", "shortener", "tiny", "uri"],
   "main": "./lib/short",
   "engines":{
-    "node":">= 0.6.0 < 0.7.0"
+    "node":">= 0.4.11 < 0.7.0"
   },
   "dependencies": {
     "mongoose":"2.2.4",
