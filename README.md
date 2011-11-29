@@ -47,7 +47,7 @@ var mongoose = require("mongoose");
 
 var short = require("short");
 
-mongoose.connect("mongodb://localhost/short");
+short.connect("mongodb://localhost/short");
 
 var app = http.createServer(function(request, response) {
   var hash = request.url.slice(1);
