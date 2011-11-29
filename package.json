@@ -2,7 +2,7 @@
   "author": "Edward Hotchkiss <e@ingk.com>",
   "name": "short",
   "description": "NodeJS URL Shortener backed by MongooseJS",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/edwardhotchkiss/short.git"
@@ -13,8 +13,8 @@
     "node":">= 0.4.11 < 0.7.0"
   },
   "dependencies": {
-    "mongoose":"2.2.4",
-    "base-converter":"1.1.1"  
+    "mongoose":"2.3.13",
+    "base-converter":"1.1.2"  
   },
   "devDependencies":{
     "vows":"0.5.13",
