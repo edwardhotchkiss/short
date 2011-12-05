@@ -8,7 +8,7 @@ var short = require("../lib/short");
 
 short.connect("mongodb://localhost/short");
 
-vows.describe("General Module Tests").addBatch({
+vows.describe("general module Tests").addBatch({
   "when instantiating short":{
     topic:function(){ 
       return short;

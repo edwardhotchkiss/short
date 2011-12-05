@@ -1,8 +1,8 @@
 
-/*
- *
- * Model::ShortURL
- *
+/*!
+
+  Model::ShortURL
+
  */
 
 var mongoose = require("mongoose");
