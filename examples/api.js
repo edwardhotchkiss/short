@@ -1,9 +1,12 @@
 
-var short = require("../lib/short");
+/*!
+  Core Modules
+ */
 
-short.connect("mongodb://localhost/short");
-
-var URL = "http://nodejs.org/";
+var short = require('../lib/short'),
+    URL = 'http://nodejs.org/';
+    
+short.connect('mongodb://localhost/short');
 
 short.gen(URL, function(error, shortURL) {
   if (error) {

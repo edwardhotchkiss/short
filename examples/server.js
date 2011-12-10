@@ -1,10 +1,13 @@
 
-var http = require("http");
-var mongoose = require("mongoose");
+/*!
+  Core Modules
+ */
 
-var short = require("../lib/short");
+var http = require('http'),
+    mongoose = require('mongoose'),
+    short = require('../lib/short');
 
-mongoose.connect("mongodb://localhost/short");
+mongoose.connect('mongodb://localhost/short');
 
 var app = http.createServer(function(request, response) {
   var hash = request.url.slice(1);
@@ -12,21 +15,21 @@ var app = http.createServer(function(request, response) {
     if (shortURLObject) {
       var URL = shortURLObject[0].URL;
       response.writeHead(302, {
-        "Location" : URL
+        'Location' : URL
       });
       response.end();
     } else {
-      response.writeHead(200, { "Content-Type" : "text/html" });
-      response.write("URL not found!");
+      response.writeHead(200, { 'Content-Type' : 'text/html' });
+      response.write('URL not found!');
       response.end();
     }
   });
 });
 
-short.gen("http://nodejs.org/", function(error, shortURL) {
-  finalURL = "http://localhost:8000/" + shortURL.hash;
+short.gen('http://nodejs.org/', function(error, shortURL) {
+  finalURL = 'http://localhost:8000/' + shortURL.hash;
   app.listen(8000);
-  console.log("> Open "+finalURL);
+  console.log('> Open '+finalURL);
 });
 
 /* EOF */
