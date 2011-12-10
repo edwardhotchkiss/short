@@ -1,35 +1,45 @@
 
-var vows = require("vows");
-var assert = require("assert");
-var should = require("should");
-var mongoose = require("mongoose");
+/*!
+  Core Modules
+ */
 
-var short = require("../lib/short");
+var vows = require('vows'),
+    assert = require('assert'),
+    mongoose = require('mongoose'),
+    short = require('../lib/short');
 
-short.connect("mongodb://localhost/short");
+/*!
+  Connect to MongoDB
+ */
 
-vows.describe("general module Tests").addBatch({
-  "when instantiating short":{
+short.connect('mongodb://localhost/short');
+
+/*!
+  Vows / npm test
+ */
+ 
+vows.describe('general module Tests').addBatch({
+  'when instantiating short':{
     topic:function(){ 
       return short;
     },
-    "short should be a function":function(topic) {
-      topic.should.be.a("function");
+    'short should be a function':function(topic) {
+      assert.isFunction(topic);
     },
   },
-  "when creating and retrieving a short url":{
+  'when creating and retrieving a short url':{
     topic:function() {
-      var URL = "http://nodejs.org/";
+      var URL = 'http://nodejs.org/';
       short.gen(URL, this.callback);
     },
-    "there should be no errors":function(error, shortURL){
+    'there should be no errors':function(error, shortURL){
       assert.isNull(error);
     },
-    "shortURL should be defined":function(error, shortURL){
+    'shortURL should be defined':function(error, shortURL){
       assert.isNotNull(shortURL);
     },
-    "and shortURL should be an object":function(error, shortURL){
-      shortURL.should.be.a("object");
+    'and shortURL should be an object':function(error, shortURL){
+      assert.isObject(shortURL);
     }
   }
 }).export(module);
