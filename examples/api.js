@@ -5,7 +5,7 @@
 
 var short = require('../lib/short'),
     URL = 'http://nodejs.org/';
-    
+
 short.connect('mongodb://localhost/short');
 
 short.gen(URL, function(error, shortURL) {
