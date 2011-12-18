@@ -53,7 +53,7 @@ ShortURL.findByHash = function(hash, callback) {
         callback(null, null);
       }
     };
-  }); 
+  });
 };
 
 // increment hits
