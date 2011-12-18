@@ -17,10 +17,10 @@ short.connect('mongodb://localhost/short');
 /*!
   Vows / npm test
  */
- 
+
 vows.describe('general module Tests').addBatch({
   'when instantiating short':{
-    topic:function(){ 
+    topic:function(){
       return short;
     },
     'short should be a function':function(topic) {
