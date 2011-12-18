@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "mongoose":"2.4.1",
-    "base-converter":"1.1.2"  
+    "base-converter":"1.1.2"
   },
   "devDependencies":{
     "vows":"0.6.0"
