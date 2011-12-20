@@ -10,9 +10,9 @@
 <body>
   <div id="container" data-role="field-contain">
     <h1>SHORT: NodeJS URL Shortener</h1>
-    <form id="create" action="" method="post">
+    <form id="create" action="" method="put" onsubmit="return false;">
       <fieldset>
-        <input type="text" name="url" id="url" placeholder="Enter URL..." />
+        <input type="text" name="url" id="url" placeholder="Enter URL to Shorten..." />
         <input type="button" id="send" name="send" value="shorten" />
       </fieldset>
     </form>
