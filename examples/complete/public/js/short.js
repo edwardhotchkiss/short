@@ -12,7 +12,7 @@ $(document).ready(function() {
       url : $('#url').val()
     };
     $('#send').val('shortening');
-    $.AJAX('/api/create', postData, function(response) {
+    $.AJAX('GET', '/api/create', postData, function(response) {
       setTimeout(function() {
         $('#url').val(response.shortened);
         $.Notify('Shortened URL Created! Click to Copy!');
