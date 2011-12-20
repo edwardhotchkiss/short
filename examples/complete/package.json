@@ -1,7 +1,7 @@
 {
   "author":"Edward Hotchkiss <e@ingk.com>",
   "name":"bkln.me",
-  "description":"Example `npm install short` complete vanity URL shortener",
+  "description":"Example usage of `npm install short` (bkln.me)",
   "version":"0.1.0",
   "repository":{
     "type":"git",
@@ -12,9 +12,9 @@
     "node":">= 0.6.6 < 0.8.0"
   },
   "dependencies":{
-    "mongoose":"2.4.1",
-    "express":"2.2.0",
-    "ejs":"0.4.3"
+    "mongoose":"2.4.7",
+    "express":"2.5.2",
+    "short":"0.2.8"
   },
   "licenses":[{
     "type":"MIT",
