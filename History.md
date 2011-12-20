@@ -1,5 +1,5 @@
 
-0.2.7 / 2011-12-18 
+0.2.8 / 2011-12-18 
 ==================
 
   * Added gun.io whitespace changes, version bump
