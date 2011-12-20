@@ -12,7 +12,9 @@ var vows = require('vows'),
   Connect to MongoDB
  */
 
-short.connect('mongodb://localhost/short');
+var MONGO_DB = process.env.MONGO_DB || 'mongodb://localhost/short';
+
+short.connect(MONGO_DB);
 
 /*!
   Vows / npm test
