@@ -18,15 +18,6 @@ short.connect(MONGO_DB);
 app.configure(function() {
   app.use(express.static(__dirname+'/public'));
   app.use(express.bodyParser());
-  app.use(express.errorHandler());
-});
-
-app.configure('development', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('production', function() {
-  app.use(express.errorHandler());
 });
 
 app.get('/api/*', function (req, res) {
@@ -42,8 +33,8 @@ app.get('/api/*', function (req, res) {
     else {
       var URL = shortURL.URL;
       var hash = shortURL.hash;
-      var tiny_url = "http://localhost:" + port + "/" + hash;
-      console.log("URL is " + URL + " " + tiny_url);
+      var tiny_url = 'http://localhost:' + port + '/' + hash;
+      console.log('URL is ' + URL + ' ' + tiny_url);
       res.end(tiny_url);
     }
   });
