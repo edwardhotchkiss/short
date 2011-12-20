@@ -1,7 +1,7 @@
 {
   "author": "Edward Hotchkiss <e@ingk.com>",
   "name": "short",
-  "description": "NodeJS URL Shortener backed by MongooseJS w/ Complete Example Website",
+  "description": "NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site",
   "version": "0.3.0",
   "repository": {
     "type": "git",
