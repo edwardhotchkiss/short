@@ -20,12 +20,11 @@ app.configure(function() {
   app.use(express.bodyParser());
 });
 
-app.get('/api/*', function (req, res) {
+app.post('/api/*', function (req, res) {
   if (req.url === '/favicon.ico') {
     return;
   }
-  var removeApi = req.url.slice(5),
-      URL = removeApi;
+  var URL = req.body['url'];
   short.gen(URL, function (error, shortURL) {
     if (error) {
       console.error(error);
@@ -35,7 +34,7 @@ app.get('/api/*', function (req, res) {
       var hash = shortURL.hash;
       var tiny_url = 'http://localhost:' + port + '/' + hash;
       console.log('URL is ' + URL + ' ' + tiny_url);
-      res.end(tiny_url);
+      res.send({ url:tiny_url });
     }
   });
 });
@@ -46,13 +45,12 @@ app.get('*', function (req, res) {
   }
   var hash = req.url.slice(1);
   short.get(hash, function (error, shortURLObject) {
-    if (error) {console.error(error);
-    } 
-    else {
+    if (error) {
+      console.error(error);
+    }  else {
       if (shortURLObject) {
-        res.redirect(shortURLObject[0].URL);
-      } 
-      else {
+        res.redirect(shortURLObject[0].URL, 302);
+      } else {
         res.send('URL not found!', 404);
         res.end();
       }
