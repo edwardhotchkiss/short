@@ -34,7 +34,7 @@ app.get('/api/*', function (req, res) {
     return;
   }
   var removeApi = req.url.slice(5),
-    URL = removeApi;
+      URL = removeApi;
   short.gen(URL, function (error, shortURL) {
     if (error) {
       console.error(error);
@@ -42,7 +42,7 @@ app.get('/api/*', function (req, res) {
     else {
       var URL = shortURL.URL;
       var hash = shortURL.hash;
-      var tiny_url = "http://127.0.0.1:" + port + "/" + hash;
+      var tiny_url = "http://localhost:" + port + "/" + hash;
       console.log("URL is " + URL + " " + tiny_url);
       res.end(tiny_url);
     }
