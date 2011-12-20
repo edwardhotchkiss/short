@@ -1,4 +1,12 @@
 
+0.3.0 / 2011-12-20 
+==================
+
+  * working example EADME
+  * working complete example :P
+  * added CoreJS Client side script, edited to intergrate alongside testing
+  * rename for integration of two similar git repos
+
 0.2.8 / 2011-12-18 
 ==================
 
