@@ -1,7 +1,7 @@
 {
   "author":"Edward Hotchkiss <e@ingk.com>",
-  "name":"bkln.me",
-  "description":"Example usage of `npm install short` (bkln.me)",
+  "name":"short-example",
+  "description":"Example usage of `npm install short`",
   "version":"0.1.0",
   "repository":{
     "type":"git",
