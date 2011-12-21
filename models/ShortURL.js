@@ -23,14 +23,12 @@ var ShortURL = mongoose.model("ShortURL", ShortURLSchema);
 
 // return count, if it exists, try another
 ShortURL.checkExists = function(hash, callback) {
-  var query = ShortURL.find({});
-  query.where("hash", hash);
-  query.exec(function(error, shortenedURLS) {
+  var query = ShortURL.find({"hash": hash}, [hash], function (error, shortenedURLS) {
     if (error) {
       callback(error, null);
     } else {
       callback(null, shortenedURLS);
-    };
+    }
   });
 };
 
@@ -47,12 +45,12 @@ ShortURL.findByHash = function(hash, callback) {
             callback(error, null);
           } else {
             callback(null, URL);
-          };
+          }
         });
       } else {
         callback(null, null);
       }
-    };
+    }
   });
 };
 
