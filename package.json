@@ -1,18 +1,18 @@
 {
-  "author": "Edward Hotchkiss <e@ingk.com>",
-  "name": "short",
-  "description": "NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site",
-  "version": "0.3.0",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/edwardhotchkiss/short.git"
+  "author":"Edward Hotchkiss <e@ingk.com>",
+  "name":"short",
+  "description":"NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site",
+  "version":"0.3.0",
+  "repository":{
+    "type":"git",
+    "url":"git://github.com/edwardhotchkiss/short.git"
   },
-  "keywords": ["short", "url", "shortener", "tiny", "uri"],
-  "main": "./lib/short",
+  "keywords":["short","url","shortener","tiny","uri"],
+  "main":"./lib/short",
   "engines":{
-    "node":">= 0.4.11 < 0.7.0"
+    "node":">= 0.6.0 < 0.7.0"
   },
-  "dependencies": {
+  "dependencies":{
     "mongoose":"2.4.1",
     "base-converter":"1.1.2"
   },
@@ -23,7 +23,7 @@
     "type":"MIT",
     "url":"http://github.com/edwardhotchkiss/short/LICENSE"
   }],
-  "scripts": {
-    "test": "vows test/*.test.js --spec"
+  "scripts":{
+    "test":"vows test/*.test.js --spec"
   }
 }
