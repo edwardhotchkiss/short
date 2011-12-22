@@ -6,7 +6,7 @@
     { "name": "Kevin", "github": "http://github.com/thinkroth" }
   ],
   "description":"NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site",
-  "version":"0.3.0",
+  "version":"0.4.0",
   "repository":{
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/short.git"
