@@ -12,7 +12,6 @@
     "node": ">= 0.6.6 < 0.8.0"
   },
   "dependencies": {
-    "mongoose": "2.4.7",
     "express": "2.5.2",
     "short": "0.4.1"
   },
