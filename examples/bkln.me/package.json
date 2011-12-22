@@ -1,23 +1,36 @@
 {
-  "author":"Edward Hotchkiss <e@ingk.com>",
-  "name":"short-example",
-  "description":"Example usage of `npm install short`",
-  "version":"0.1.0",
-  "repository":{
-    "type":"git",
-    "url":"git://github.com/edwardhotchkiss/short.git"
+  "author": "Edward Hotchkiss <e@ingk.com>",
+  "name": "bkln.me",
+  "description": "Example usage of `npm install short`",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/edwardhotchkiss/short.git"
   },
-  "main":"./index",
-  "engines":{
-    "node":">= 0.6.6 < 0.8.0"
+  "main": "./index",
+  "engines": {
+    "node": ">= 0.6.6 < 0.8.0"
   },
-  "dependencies":{
-    "mongoose":"2.4.7",
-    "express":"2.5.2",
-    "short":"0.2.8"
+  "dependencies": {
+    "mongoose": "2.4.7",
+    "express": "2.5.2",
+    "short": "0.2.8"
   },
-  "licenses":[{
-    "type":"MIT",
-    "url":"http://github.com/edwardhotchkiss/short/LICENSE"
-  }]
+  "domains": [
+    "bkln.me"
+  ],
+  "scripts": {
+    "start": "index.js"
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "SUBDOMAIN": "bkln"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/edwardhotchkiss/short/LICENSE"
+    }
+  ],
+  "subdomain": "bkln.me"
 }
