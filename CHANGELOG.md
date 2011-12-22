@@ -1,4 +1,24 @@
 
+0.4.1 / 2011-12-22 
+==================
+
+  * mongoose isnt actually required by bkln.me example directly, remove dep
+  * updated required mongoose version to 2.4.8
+  * version bump
+  * larger node range to support nodejitsu
+  * travis for 0.4-0.8
+  * use 0.4.1 (incoming) which will suport 0.4.11 >= 0.8.0
+  * bump required `short` version to 0.4.0 for bkln.me
+  * rename name for deploy to bkln
+  * index to app for package.json/nodejitsu
+  * setup for nodejitsu
+  * rename MONGO_DB to MONGO_DB_SHORT for nodejitsu deploy
+  * rename complete example to bkln.me
+  * improvements in the readme
+  * readme formating
+  * pull requests section on README
+  * added kevin to readme via contributors, added license and test `npm test` to readme also
+
 0.4.0 / 2011-12-22 
 ==================
 
