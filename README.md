@@ -130,6 +130,14 @@ app.listen(port, function () {
 
 ```
 
+## Pull Requests
+
+  * fork
+  * clone
+  * improve
+  * pull request
+  * instant karma
+
 ## Run Tests
 
 ``` bash
