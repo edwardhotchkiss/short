@@ -1,4 +1,16 @@
 
+0.4.0 / 2011-12-22 
+==================
+
+  * added `Kevin` (@thinkroth) as a contributor
+  * more comments, cleaned up code
+  * comments
+  * Merge pull request #7 from thinkroth/master
+  * Optimized write process
+  * Merge pull request #6 from thinkroth/master
+  * bump required node version to 0.6.0 align travis with that spec also
+  * Optimized checkExists query
+
 0.3.0 / 2011-12-20 
 ==================
 
