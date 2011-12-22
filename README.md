@@ -15,13 +15,17 @@ $ node examples/server.js
 
 ### Basic API Usage
 
+* Using `short` within your own project as an API interface
+
 ```javascript
 var short = require("short");
 
 short.connect("mongodb://localhost/short");
 
+// URL to 'shorten'
 var URL = "http://nodejs.org/";
 
+// Shorten URL
 short.gen(URL, function(error, shortURL) {
   if (error) {
     throw new Error(error);
@@ -37,45 +41,21 @@ short.gen(URL, function(error, shortURL) {
     });
   }
 });
+
+/* EOF */
 ```
 ***
 
-### HTTP Server & API
+### With ExpressJS as an API Server
 
-```javascript
-var http = require("http");
+Just add the domain you'd like to the end of localhost:8080/api
 
-var short = require("short");
-
-short.connect("mongodb://localhost/short");
-
-var app = http.createServer(function(request, response) {
-  var hash = request.url.slice(1);
-  short.get(hash, function(error, shortURLObject) {
-    if (shortURLObject) {
-      var URL = shortURLObject[0].URL;
-      response.writeHead(302, {
-        "Location" : URL
-      });
-      response.end();
-    } else {
-      response.writeHead(200, { "Content-Type" : "text/html" });
-      response.write("URL not found!");
-      response.end();
-    }
-  });
-});
-
-short.gen("http://nodejs.org/", function(error, shortURL) {
-  finalURL = "http://localhost:8000/" + shortURL.hash;
-  app.listen(8000);
-  console.log("> Open "+finalURL);
-});
+```bash
+$ curl localhost:8080/api/http://www.longdomain.com/
 ```
-***
 
-### Express Server & API
 ```javascript
+
 var url = require('url'),
     express = require('express'),
     short = require('short'),
@@ -128,6 +108,7 @@ app.listen(port, function () {
   console.log('Server running on port ' + port);
 });
 
+/* EOF */
 ```
 
 ## Pull Requests
