@@ -13,24 +13,13 @@ var ObjectId = Schema.ObjectId;
 var shortURL_schema = {
   id          : ObjectId,
   URL         : String,
-  hash        : { type : String },
+  hash        : { type : String, unique: true },
   hits        : { type : Number, default: 0 },
   created_at  : { type : Date, default: Date.now }
 };
 
 var ShortURLSchema = new Schema(shortURL_schema);
 var ShortURL = mongoose.model("ShortURL", ShortURLSchema);
-
-// return count, if it exists, try another
-ShortURL.checkExists = function(hash, callback) {
-  var query = ShortURL.find({"hash": hash}, [hash], function (error, shortenedURLS) {
-    if (error) {
-      callback(error, null);
-    } else {
-      callback(null, shortenedURLS);
-    }
-  });
-};
 
 // search for a URL by its hash
 ShortURL.findByHash = function(hash, callback) {
