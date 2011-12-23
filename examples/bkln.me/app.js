@@ -7,7 +7,7 @@
 
 var url = require('url'),
     express = require('express'),
-    short = require('short'),
+    short = require('../../lib/short'),
     app = express.createServer(),
     port = process.env.PORT || 8000,
     ShortURL = short.ShortURL,
@@ -37,7 +37,7 @@ app.post('/api/*', function(request, response) {
     return;
   }
   var URL = request.body['url'];
-  short.gen(URL, function (error, shortURL) {
+  short.generate(URL, function (error, shortURL) {
     console.log(shortURL);
     if (error) {
       console.error(error);
@@ -87,12 +87,12 @@ app.get('*', function(request, response) {
     return;
   }
   var hash = request.url.slice(1);
-  short.get(hash, function (error, shortURLObject) {
+  short.retrieve(hash, function (error, shortURLObject) {
     if (error) {
       console.error(error);
     }  else {
       if (shortURLObject) {
-        response.redirect(shortURLObject[0].URL, 302);
+        response.redirect(shortURLObject.URL, 302);
       } else {
         response.send('URL not found!', 404);
         response.end();
