@@ -1,7 +1,7 @@
 
-# short [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/short.png)](http://travis-ci.org/edwardhotchkiss/short)
+# Short [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/short.png)](http://travis-ci.org/edwardhotchkiss/short)
 
-> NodeJS URL Shortener backed by MongooseJS
+> NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site
 
 ### Installation
 
