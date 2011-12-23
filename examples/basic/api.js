@@ -35,7 +35,7 @@ short.generate(URL, function(error, shortURL) {
         // Base 62 Hash
         console.log('hash:', shortenedURLObject.hash);
         process.exit(0);
-      };
+      }
     });
   }
 });
