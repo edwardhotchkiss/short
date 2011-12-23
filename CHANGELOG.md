@@ -1,4 +1,11 @@
 
+0.4.2 / 2011-12-22 
+==================
+
+  * expose `ShortURL` mongoose model
+  * use exports vs. function/module.exports
+  * use request and response vs. req and res for clarity
+
 0.4.1 / 2011-12-22 
 ==================
 
