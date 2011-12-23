@@ -37,8 +37,7 @@ app.post('/api/*', function(request, response) {
     return;
   }
   var URL = request.body['url'];
-  short.gen(URL, function (error, shortURL) {
-    console.log(shortURL);
+  short.generate(URL, function(error, shortURL) {
     if (error) {
       console.error(error);
     } else {
@@ -52,7 +51,7 @@ app.post('/api/*', function(request, response) {
 });
 
 /*!
-  Display ENV info for (failing) Nodejitsu
+  Display ENV info on Nodejitsu
  */
 
 app.get('/env', function(request, response) {
@@ -87,12 +86,12 @@ app.get('*', function(request, response) {
     return;
   }
   var hash = request.url.slice(1);
-  short.get(hash, function (error, shortURLObject) {
+  short.retrieve(hash, function (error, shortURLObject) {
     if (error) {
       console.error(error);
-    }  else {
+    } else {
       if (shortURLObject) {
-        response.redirect(shortURLObject[0].URL, 302);
+        response.redirect(shortURLObject.URL, 302);
       } else {
         response.send('URL not found!', 404);
         response.end();
