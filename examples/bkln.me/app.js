@@ -18,7 +18,7 @@ var url = require('url'),
  */
 
 short.connect(MONGO_DB_SHORT);
-  
+
 /*!
   Setup ExpressJS
  */
@@ -38,16 +38,30 @@ app.post('/api/*', function(request, response) {
   }
   var URL = request.body['url'];
   short.gen(URL, function (error, shortURL) {
+    console.log(shortURL);
     if (error) {
       console.error(error);
     } else {
       var URL = shortURL.URL;
       var hash = shortURL.hash;
-      var tiny_url = 'http://localhost:' + port + '/' + hash;
-      console.log('URL is ' + URL + ' ' + tiny_url);
+      var tiny_url = 'http://' + request.headers.host + '/' + hash;
+      console.log('URL is ' + tiny_url);
       response.send({ url:tiny_url });
     }
   });
+});
+
+/*!
+  Display ENV info for (failing) Nodejitsu
+ */
+
+app.get('/env', function(request, response) {
+  response.send(
+    {
+      port : port,
+      MONGO_DB_SHORT : MONGO_DB_SHORT
+    }
+  );  
 });
 
 /*!
@@ -91,7 +105,7 @@ app.get('*', function(request, response) {
   ExpressJS, Listen on <port>
  */
 
-app.listen(port, function () {
+app.listen(port, function() {
   console.log('Server running on port ' + port);
 });
 
