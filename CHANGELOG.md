@@ -1,4 +1,24 @@
 
+1.0.0 / 2011-12-23 
+==================
+
+  * remove require(base-converter)
+  * complete example uses short 1.0.0 now
+  * version bump, updated complete example
+  * updated API with docs also updated
+  * keywords in package.json
+  * remove `base-converter` as a dependency
+  * new test for short.hasher
+  * new base 62 URL hasher
+  * Merge branch 'develop'
+  * travis ci will only test master
+  * new API
+  * code cleanup, emphasis in README
+  * new exports method, expose hasher method
+  * roth, thats his last name
+  * use v0.4.3 on /examples/bkln.me
+  * description
+
 0.4.3 / 2011-12-22 
 ==================
 

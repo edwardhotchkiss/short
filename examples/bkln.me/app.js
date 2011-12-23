@@ -20,6 +20,18 @@ var url = require('url'),
 short.connect(MONGO_DB_SHORT);
 
 /*!
+  MongoDB Mongoose on open|error Events
+ */
+
+short.connection.on('open', function(){
+  console.log('mongodb connected');
+});
+
+short.connection.on('error', function(error){
+  throw new Error(error);
+});
+
+/*!
   Setup ExpressJS
  */
 
@@ -48,33 +60,6 @@ app.post('/api/*', function(request, response) {
       response.send({ url:tiny_url });
     }
   });
-});
-
-/*!
-  Display ENV info on Nodejitsu
- */
-
-app.get('/env', function(request, response) {
-  response.send(
-    {
-      port : port,
-      MONGO_DB_SHORT : MONGO_DB_SHORT
-    }
-  );  
-});
-
-/*!
-  Display all Short URL MongoDB Documents in JSON format
- */
-
-app.get('/urls', function(request, response) {
-  ShortURL.find({}, function(error, results) {
-    if (error) {
-      console.error(error);
-    } else {
-      response.send(results);
-    }
-  }); 
 });
 
 /*!
