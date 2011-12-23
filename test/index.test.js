@@ -32,7 +32,7 @@ vows.describe('general module tests').addBatch({
   'when creating and retrieving a short url':{
     topic:function() {
       var URL = 'http://nodejs.org/';
-      short.gen(URL, this.callback);
+      short.generate(URL, this.callback);
     },
     'there should be no errors':function(error, shortURL){
       assert.isNull(error);
