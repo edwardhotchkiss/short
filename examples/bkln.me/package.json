@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "express": "2.5.2",
-    "short": "0.4.3"
+    "short": "1.0.0"
   },
   "domains": [
     "bkln.me"
