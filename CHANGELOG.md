@@ -1,4 +1,13 @@
 
+0.4.3 / 2011-12-22 
+==================
+
+  * mongoose.connection.on(open|error)
+  * changes to work with nodejitsu, and display ENV information /env
+  * production NODE_ENV
+  * updated example to expose ShortModel and retrieve all Shortened URLs
+  * comments
+
 0.4.2 / 2011-12-22 
 ==================
 
