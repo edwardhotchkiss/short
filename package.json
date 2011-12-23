@@ -11,7 +11,7 @@
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/short.git"
   },
-  "keywords":["short","url","shortener","tiny","uri"],
+  "keywords":["short","url","shortener","tiny","uri","bitly","vanity"],
   "main":"./lib/short",
   "engines":{
     "node":">= 0.4.11 < 0.8.0"
