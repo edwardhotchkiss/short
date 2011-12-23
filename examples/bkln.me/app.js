@@ -18,12 +18,12 @@ var url = require('url'),
  */
 
 short.connect(MONGO_DB_SHORT);
-
+  
 /*!
   Setup ExpressJS
  */
 
-app.configure(function() {
+app.configure('production', function() {
   app.use(express.static(__dirname+'/public'));
   app.use(express.bodyParser());
 });
