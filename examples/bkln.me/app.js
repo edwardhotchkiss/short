@@ -7,7 +7,7 @@
 
 var url = require('url'),
     express = require('express'),
-    short = require('../../lib/short'),
+    short = require('short'),
     app = express.createServer(),
     port = process.env.PORT || 8000,
     ShortURL = short.ShortURL,
@@ -37,8 +37,7 @@ app.post('/api/*', function(request, response) {
     return;
   }
   var URL = request.body['url'];
-  short.generate(URL, function (error, shortURL) {
-    console.log(shortURL);
+  short.generate(URL, function(error, shortURL) {
     if (error) {
       console.error(error);
     } else {
@@ -52,7 +51,7 @@ app.post('/api/*', function(request, response) {
 });
 
 /*!
-  Display ENV info for (failing) Nodejitsu
+  Display ENV info on Nodejitsu
  */
 
 app.get('/env', function(request, response) {
@@ -90,7 +89,7 @@ app.get('*', function(request, response) {
   short.retrieve(hash, function (error, shortURLObject) {
     if (error) {
       console.error(error);
-    }  else {
+    } else {
       if (shortURLObject) {
         response.redirect(shortURLObject.URL, 302);
       } else {

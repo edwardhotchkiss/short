@@ -20,51 +20,6 @@ var ShortURLSchema = new Schema({
 
 var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
 
-/*!
- @method findByHash
- @param {String} hash
- @param {Function} callback
-*/
-
-ShortURL.findByHash = function(hash, callback) {
-  ShortURL.find({ hash: hash }, function(error, URL) {
-    if (error) {
-      callback(error, null);
-    } else {
-      if (URL.length !== 0) {
-        var id = URL[0]._id;
-        ShortURL.updateHitsById(id, function(error) {
-          if (error) {
-            callback(error, null);
-          } else {
-            callback(null, URL);
-          }
-        });
-      } else {
-        callback(null, null);
-      }
-    }
-  });
-};
-
-/*!
- @method updatehitsById
- @param {ObjectId} id
- @param {Function} callback
- */
-
-ShortURL.updateHitsById = function(id, callback) {
-  ShortURL.findById(id, function (error, URL) {
-    var hits = URL.hits + 1;
-    if (!error) {
-      URL.hits = hits;
-      URL.save(function(error) {
-        callback(error);
-      });
-    }
-  });
-};
-
 module.exports = ShortURL;
 
 /* EOF */
