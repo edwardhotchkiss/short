@@ -20,7 +20,7 @@ short.connect(MONGO_DB);
   Vows / npm test
  */
 
-vows.describe('general module Tests').addBatch({
+vows.describe('general module tests').addBatch({
   'when instantiating short':{
     topic:function(){
       return short;
@@ -32,7 +32,7 @@ vows.describe('general module Tests').addBatch({
   'when creating and retrieving a short url':{
     topic:function() {
       var URL = 'http://nodejs.org/';
-      short.gen(URL, this.callback);
+      short.generate(URL, this.callback);
     },
     'there should be no errors':function(error, shortURL){
       assert.isNull(error);

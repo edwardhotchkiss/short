@@ -117,7 +117,7 @@ app.listen(port, function () {
   * clone
   * improve
   * pull request
-  * instant karma
+  * **instant karma!**
 
 ## Run Tests
 
