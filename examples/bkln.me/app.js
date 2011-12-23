@@ -19,39 +19,38 @@ app.configure(function() {
   app.use(express.bodyParser());
 });
 
-app.post('/api/*', function (req, res) {
-  if (req.url === '/favicon.ico') {
+app.post('/api/*', function(request, response) {
+  if (request.url === '/favicon.ico') {
     return;
   }
-  var URL = req.body['url'];
+  var URL = request.body['url'];
   short.gen(URL, function (error, shortURL) {
     if (error) {
       console.error(error);
-    } 
-    else {
+    } else {
       var URL = shortURL.URL;
       var hash = shortURL.hash;
       var tiny_url = 'http://localhost:' + port + '/' + hash;
       console.log('URL is ' + URL + ' ' + tiny_url);
-      res.send({ url:tiny_url });
+      response.send({ url:tiny_url });
     }
   });
 });
 
-app.get('*', function (req, res) {
-  if (req.url === '/favicon.ico') {
+app.get('*', function(request, response) {
+  if (request.url === '/favicon.ico') {
     return;
   }
-  var hash = req.url.slice(1);
+  var hash = request.url.slice(1);
   short.get(hash, function (error, shortURLObject) {
     if (error) {
       console.error(error);
     }  else {
       if (shortURLObject) {
-        res.redirect(shortURLObject[0].URL, 302);
+        response.redirect(shortURLObject[0].URL, 302);
       } else {
-        res.send('URL not found!', 404);
-        res.end();
+        response.send('URL not found!', 404);
+        response.end();
       }
     }
   });
