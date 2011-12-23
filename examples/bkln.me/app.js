@@ -10,14 +10,27 @@ var url = require('url'),
     short = require('short'),
     app = express.createServer(),
     port = process.env.PORT || 8000,
+    ShortURL = short.ShortURL,
     MONGO_DB_SHORT = process.env.MONGO_DB_SHORT || 'mongodb://localhost/short';
 
+/*!
+  Connect to MongoDB w/ MongooseJS
+ */
+
 short.connect(MONGO_DB_SHORT);
+
+/*!
+  Setup ExpressJS
+ */
 
 app.configure(function() {
   app.use(express.static(__dirname+'/public'));
   app.use(express.bodyParser());
 });
+
+/*!
+  API Calls to Generate Short URLs
+ */
 
 app.post('/api/*', function(request, response) {
   if (request.url === '/favicon.ico') {
@@ -37,6 +50,10 @@ app.post('/api/*', function(request, response) {
   });
 });
 
+/*!
+  Retrieve Short URLs & Redirect
+ */
+
 app.get('*', function(request, response) {
   if (request.url === '/favicon.ico') {
     return;
@@ -55,6 +72,10 @@ app.get('*', function(request, response) {
     }
   });
 });
+
+/*!
+  ExpressJS, Listen on <port>
+ */
 
 app.listen(port, function () {
   console.log('Server running on port ' + port);
