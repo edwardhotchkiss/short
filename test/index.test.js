@@ -12,9 +12,9 @@ var vows = require('vows'),
   Connect to MongoDB
  */
 
-var MONGO_DB = process.env.MONGO_DB || 'mongodb://localhost/short';
+var MONGO_DB_SHORT = process.env.MONGO_DB_SHORT || 'mongodb://localhost/short';
 
-short.connect(MONGO_DB);
+short.connect(MONGO_DB_SHORT);
 
 /*!
   Vows / npm test
@@ -28,6 +28,17 @@ vows.describe('general module tests').addBatch({
     'short should be an object':function(topic) {
       assert.isObject(topic);
     },
+  },
+  'when hashing `http://google.com/`':{
+    topic:function(){
+      return short.hasher('http://google.com/');
+    },
+    'the hash should be a string':function(hash){
+      assert.isString(hash);
+    },
+    'with a length of 6':function(hash){
+      assert.strictEqual(hash.length, 6);
+    }
   },
   'when creating and retrieving a short url':{
     topic:function() {
