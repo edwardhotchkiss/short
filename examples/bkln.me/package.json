@@ -2,14 +2,14 @@
   "author": "Edward Hotchkiss <e@ingk.com>",
   "name": "bkln.me",
   "description": "Example usage of `npm install short`",
-  "version": "0.1.1-8",
+  "version": "0.1.1-10",
   "repository": {
     "type": "git",
     "url": "git://github.com/edwardhotchkiss/short.git"
   },
   "main": "./index",
   "engines": {
-    "node": ">= 0.6.6 < 0.8.0"
+    "node": ">= 0.4.11 < 0.8.0"
   },
   "dependencies": {
     "express": "2.5.2",
