@@ -3,40 +3,67 @@
 
 > NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site
 
+### Notes on 0.1.0
+
+  This is a finalized API. Previous API structure is not compatible with short 1.0.0+
+
+### Running Examples
+
+```bash
+$ git clone git@github.com:edwardhotchkiss/short.git
+$ cd short/examples/basic
+$ node API.js
+```
+
 ### Installation
 
 ```bash
 $ npm install short
-$ cd short
-$ npm install
-$ node examples/server.js
 ```
 ***
 
 ### Basic API Usage
 
-* Using `short` within your own project as an API interface
+* Using short within your own project as an API interface
 
 ```javascript
-var short = require("short");
 
-short.connect("mongodb://localhost/short");
+/*!
+  Core Modules
+ */
 
-// URL to 'shorten'
-var URL = "http://nodejs.org/";
+var short = require('../../lib/short'),
+    // URL to Shorten
+    URL = 'http://nodejs.org/';
 
-// Shorten URL
-short.gen(URL, function(error, shortURL) {
+short.connect('mongodb://localhost/short');
+
+short.connection.on('open', function(){
+  /* connected to mongodb */
+});
+
+short.connection.on('error', function(error){
+  throw new Error(error);
+});
+
+/*!
+  Generate a Shortened URL
+  Retrieve URL based on Generated Hash
+ */
+
+short.generate(URL, function(error, shortURL) {
   if (error) {
     throw new Error(error);
   } else {
-    short.get(shortURL.hash, function(error, shortURLObject) {
+    short.retrieve(shortURL.hash, function(error, shortenedURLObject) {
       if (error) {
         throw new Error(error);
       } else {
-        var URL = shortURLObject[0].URL
-        var hash = shortURLObject[0].hash;
-        process.exit(1);
+        // URL
+        console.log('URL:', shortenedURLObject.URL);
+        // Base 62 Hash
+        console.log('hash:', shortenedURLObject.hash);
+        process.exit(0);
       };
     });
   }
@@ -46,69 +73,12 @@ short.gen(URL, function(error, shortURL) {
 ```
 ***
 
-### With ExpressJS as an API Server
+### Connecting (cURL) to the Complete Example
 
 Just add the domain you'd like to the end of localhost:8080/api
 
 ```bash
 $ curl localhost:8080/api/http://www.longdomain.com/
-```
-
-```javascript
-
-var url = require('url'),
-    express = require('express'),
-    short = require('short'),
-    app = express.createServer(),
-    port = process.env.PORT || 8080;
-
-short.connect("mongodb://localhost/short");
-
-app.get('/api/*', function (req, res) {
-  if (req.url === '/favicon.ico') {
-    return;
-  }
-  var removeApi = req.url.slice(5),
-      URL = removeApi;
-  short.gen(URL, function (error, shortURL) {
-    if (error) {
-      console.error(error);
-    } 
-    else {
-      var URL = shortURL.URL;
-      var hash = shortURL.hash;
-      var tiny_url = "http://127.0.0.1:" + port + "/" + hash;
-      console.log("URL is " + URL + " " + tiny_url);
-      res.end(tiny_url);
-    }
-  });
-});
-
-app.get('*', function (req, res) {
-  if (req.url === '/favicon.ico') {
-    return;
-  }
-  var hash = req.url.slice(1);
-  short.get(hash, function (error, shortURLObject) {
-    if (error) {console.error(error);
-    } 
-    else {
-      if (shortURLObject) {
-        res.redirect(shortURLObject[0].URL);
-      } 
-      else {
-        res.send('URL not found!', 404);
-        res.end();
-      }
-    }
-  });
-});
-
-app.listen(port, function () {
-  console.log('Server running on port ' + port);
-});
-
-/* EOF */
 ```
 
 ## Pull Requests

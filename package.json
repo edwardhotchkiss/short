@@ -6,19 +6,18 @@
     { "name": "Kevin Roth", "github": "http://github.com/thinkroth" }
   ],
   "description":"NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site",
-  "version":"0.4.3",
+  "version":"1.0.0",
   "repository":{
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/short.git"
   },
-  "keywords":["short","url","shortener","tiny","uri"],
+  "keywords":["short","url","shortener","tiny","uri","bitly","vanity"],
   "main":"./lib/short",
   "engines":{
     "node":">= 0.4.11 < 0.8.0"
   },
   "dependencies":{
-    "mongoose":"2.4.8",
-    "base-converter":"1.1.2"
+    "mongoose":"2.4.8"
   },
   "devDependencies":{
     "vows":"0.6.0"
