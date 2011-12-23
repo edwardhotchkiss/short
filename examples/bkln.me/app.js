@@ -51,6 +51,20 @@ app.post('/api/*', function(request, response) {
 });
 
 /*!
+  Display all Short URL MongoDB Documents in JSON format
+ */
+
+app.get('/urls', function(request, response) {
+  ShortURL.find({}, function(error, results) {
+    if (error) {
+      console.error(error);
+    } else {
+      response.send(results);
+    }
+  }); 
+});
+
+/*!
   Retrieve Short URLs & Redirect
  */
 
