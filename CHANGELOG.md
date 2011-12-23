@@ -1,4 +1,16 @@
 
+1.1.0 / 2011-12-23 
+==================
+
+  * version bump, using findOne vs. find, better speed [kevin]
+  * Merge pull request #8 from thinkroth/master
+  * package minor
+  * Changed findByHash to use findOne
+  * final
+  * facepalm!
+  * travis?
+  * minor fix
+
 1.0.0 / 2011-12-23 
 ==================
 
