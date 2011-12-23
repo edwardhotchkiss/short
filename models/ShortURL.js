@@ -28,12 +28,13 @@ var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
 
 
 ShortURL.findByHash = function(hash, callback) {
-  ShortURL.find({ hash: hash }, function(error, URL) {
+  ShortURL.findOne({ hash: hash }, function(error, URL) {
+    console.log(URL);
     if (error) {
       callback(error, null);
     } else {
-      if (URL.length !== 0) {
-        var id = URL[0]._id;
+      if (URL) {
+        var id = URL._id;
         ShortURL.updateHitsById(id, function(error) {
           if (error) {
             callback(error, null);
