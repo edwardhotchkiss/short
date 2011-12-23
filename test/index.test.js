@@ -20,7 +20,7 @@ short.connect(MONGO_DB);
   Vows / npm test
  */
 
-vows.describe('general module Tests').addBatch({
+vows.describe('general module tests').addBatch({
   'when instantiating short':{
     topic:function(){
       return short;
