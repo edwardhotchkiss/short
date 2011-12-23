@@ -25,8 +25,8 @@ vows.describe('general module Tests').addBatch({
     topic:function(){
       return short;
     },
-    'short should be a function':function(topic) {
-      assert.isFunction(topic);
+    'short should be an object':function(topic) {
+      assert.isObject(topic);
     },
   },
   'when creating and retrieving a short url':{
