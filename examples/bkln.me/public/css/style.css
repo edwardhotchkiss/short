@@ -32,6 +32,13 @@ a:hover {
   color: none;
 }
 
+#github {
+  position: absolute;
+  top: 0;
+  right: 0; 
+  border: 0; 
+}
+
 #container {
   width: 600px;
   position: relative;
