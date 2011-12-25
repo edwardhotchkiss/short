@@ -69,7 +69,7 @@ app.post('/api/*', function(request, response) {
 app.get('*', function(request, response) {
   if (request.url === '/favicon.ico') {
     return;
-  }
+  };
   var hash = request.url.slice(1);
   short.retrieve(hash, function (error, shortURLObject) {
     if (error) {
@@ -79,9 +79,8 @@ app.get('*', function(request, response) {
         response.redirect(shortURLObject.URL, 302);
       } else {
         response.send('URL not found!', 404);
-        response.end();
       }
-    }
+    };
   });
 });
 
