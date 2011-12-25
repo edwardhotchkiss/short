@@ -29,7 +29,6 @@ var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
 
 ShortURL.findByHash = function(hash, callback) {
   ShortURL.findOne({ hash: hash }, function(error, URL) {
-    console.log(URL);
     if (error) {
       callback(error, null);
     } else {
