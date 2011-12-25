@@ -1,4 +1,19 @@
 
+1.1.1 / 2011-12-25 
+==================
+
+  * version bump
+  * use 1.1.1 now with examples
+  * remove debug logging
+  * remove complete license from readme, only specify type and owner
+  * Changed findByHash to use findOne
+  * changelog for 1.0.0
+  * remove `base-converter` as a dependency
+  * new base 62 URL hasher
+  * new API
+  * new exports method, expose hasher method
+  * description
+
 1.1.0 / 2011-12-23 
 ==================
 
