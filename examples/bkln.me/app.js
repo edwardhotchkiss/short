@@ -35,7 +35,7 @@ short.connection.on('error', function(error){
   Setup ExpressJS
  */
 
-app.configure('production', function() {
+app.configure(function() {
   app.use(express.static(__dirname+'/public'));
   app.use(express.bodyParser());
 });
