@@ -3,9 +3,9 @@
 
 > NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site
 
-### Notes on 0.1.0
+### Notes on 1.0.0
 
-  This is a finalized API. Previous API structure is not compatible with short 1.0.0+
+  NOTE: If you've used any version of Short before 1.0.0, please note the new API. This is a finalized API & with the previous API structure being incompatible with Short 1.0.0+
 
 ### Running Examples
 
