@@ -1,4 +1,17 @@
 
+1.1.2 / 2011-12-27 
+==================
+
+  * updated npm test info to align with .npmignore
+  * compacted the npm module size with .npmignore
+  * added a .npmignore file
+  * gunio whitespace robot added ignores for already ignored (globally) .DS_Store files
+  * check for valid urls
+  * travis using 0.4.x - 0.8.x
+  * readme notes on version 1.0.0 plus more descriptive
+  * HTML meta tags
+  * add "fork me on github" image to bkln.me"
+
 1.1.1 / 2011-12-25 
 ==================
 
