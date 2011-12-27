@@ -1,1 +1,7 @@
 .git*
+test/
+examples/
+*.md
+.travis.yml
+LICENSE
+.gitignore
