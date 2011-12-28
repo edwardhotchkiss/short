@@ -3,11 +3,13 @@
 
 > NodeJS URL Shortener backed by MongooseJS w/ Complete Example Site
 
-## Notes on 1.0.0+
+Notes on 1.0.0+
+===============
 
   NOTE: If you've used any version of Short before 1.0.0, please note the new API. This is a finalized API & with the previous API structure being incompatible with Short 1.0.0+
 
-## Running Examples
+Running Examples
+================
 
 ```bash
 $ git clone git@github.com:edwardhotchkiss/short.git
@@ -15,14 +17,16 @@ $ cd short/examples/basic
 $ node api.js
 ```
 
-## Installation
+Installation
+============
 
 ```bash
 $ npm install short
 ```
 ***
 
-## Basic API Usage
+Basic API Usage
+===============
 
 Using short within your own project as an API interface
 
@@ -66,7 +70,9 @@ short.generate(URL, function(error, shortURL) {
 });
 
 ```
-## Complete Example App.js (/examples/bkln.me/)
+
+Complete Example App.js (/examples/bkln.me/)
+============================================
 
 ```javascript
 
@@ -168,7 +174,8 @@ Just add the domain you'd like to the end of localhost:8080/api
 $ curl localhost:8080/api/http://www.longdomain.com/
 ```
 
-## Pull Requests
+Pull Requests
+=============
 
   * fork
   * clone
@@ -176,7 +183,8 @@ $ curl localhost:8080/api/http://www.longdomain.com/
   * pull request
   * **instant karma!**
 
-## Run Tests (use git clone)
+Run Tests (git clone)
+=====================
 
 ``` bash
 $ git clone git@github.com:edwardhotchkiss/short.git
@@ -184,7 +192,8 @@ $ cd short
 $ npm test
 ```
 
-## License (MIT)
+License (MIT)
+=============
 
 Copyright (c) 2011, Edward Hotchkiss.
 
