@@ -1,6 +1,7 @@
 .git*
 test/
 examples/
+test/
 *.md
 .travis.yml
 LICENSE
