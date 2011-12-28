@@ -1,4 +1,16 @@
 
+0.1.3 / 2011-12-28 
+==================
+
+  * version bump, new email address
+  * formating
+  * smaller module footprint
+  * node api.js vs. API.js
+  * comment duplicate
+  * include .gitignore
+  * version bump
+  * changelog for 1.12
+
 1.1.2 / 2011-12-27 
 ==================
 
