@@ -11,8 +11,8 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.ObjectId;
 
 var ShortURLSchema = new Schema({
-  id          : ObjectId,
-  URL         : String,
+  id          : { type : ObjectId },
+  URL         : { type : String },
   hash        : { type : String, unique: true },
   hits        : { type : Number, default: 0 },
   created_at  : { type : Date, default: Date.now }
