@@ -37,6 +37,11 @@ a:hover {
   top: 0;
   right: 0; 
   border: 0; 
+  opacity: 0.2;
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=20)';
+  filter: alpha(opacity=20);
+  -moz-opacity: 0.2;
+  -khtml-opacity: 0.2;
 }
 
 #container {
