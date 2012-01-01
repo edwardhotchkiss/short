@@ -8,7 +8,6 @@
   * node api.js vs. API.js
   * comment duplicate
   * include .gitignore
-  * version bump
   * changelog for 1.1.2
 
 1.1.2 / 2011-12-27 
