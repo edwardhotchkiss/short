@@ -71,8 +71,8 @@ short.generate(URL, function(error, shortURL) {
 
 ```
 
-Complete Example App.js (/examples/bkln.me/)
-============================================
+Complete Example with Express
+=============================
 
 ```javascript
 
