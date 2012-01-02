@@ -1,4 +1,16 @@
 
+0.1.4 / 2012-01-01 
+==================
+
+  * version bump
+  * change usage for examples
+  * remove full example, segment out to bkln.me
+  * description, notes on migrating
+  * opacity in github
+  * formating
+  * dont test 0.8.0, which doesnt exist (yet) :P
+  * changelog
+
 0.1.3 / 2011-12-28 
 ==================
 
