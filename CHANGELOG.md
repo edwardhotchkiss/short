@@ -1,4 +1,9 @@
 
+0.1.4 / 2012-01-04 
+==================
+
+  * retrieve was broken in most recent api change
+
 0.1.4 / 2012-01-01 
 ==================
 
