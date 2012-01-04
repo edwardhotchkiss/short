@@ -1,10 +1,10 @@
 
-0.1.4 / 2012-01-04 
+1.2.0 / 2012-01-04 
 ==================
 
   * retrieve was broken in most recent api change
 
-0.1.4 / 2012-01-01 
+1.1.4 / 2012-01-01 
 ==================
 
   * version bump
@@ -16,7 +16,7 @@
   * dont test 0.8.0, which doesnt exist (yet) :P
   * changelog
 
-0.1.3 / 2011-12-28 
+1.1.3 / 2011-12-28 
 ==================
 
   * version bump, new email address
