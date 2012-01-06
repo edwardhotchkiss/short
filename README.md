@@ -119,8 +119,9 @@ app.post('/api/*', function(request, response) {
   if (request.url === '/favicon.ico') {
     return;
   }
-  var URL = request.body['url'];
-  short.generate(URL, function(error, shortURL) {
+  var URL = request.body['url'] || req.url.slice(5),
+      options = {length: 5};
+  short.generate(URL, options, function(error, shortURL) {
     if (error) {
       console.error(error);
     } else {
