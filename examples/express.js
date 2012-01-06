@@ -16,8 +16,9 @@ app.get('/api/*', function (req, res) {
     return;
   }
   var removeApi = req.url.slice(5),
-      URL = removeApi;
-  short.generate(URL, function (error, shortURL) {
+      URL = removeApi,
+      options = {length : 5};
+  short.generate(URL, options, function (error, shortURL) {
     if (error) {
       console.error(error);
     }
