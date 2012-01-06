@@ -1,4 +1,10 @@
 
+1.2.1 / 2012-01-06 
+==================
+
+  * Merge pull request #9 from thinkroth/master
+  * Fixed recursion error
+
 1.2.0 / 2012-01-04 
 ==================
 
