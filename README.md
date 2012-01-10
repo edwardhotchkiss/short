@@ -36,11 +36,11 @@ var short = require('../../lib/short'),
     // URL to Shorten
     URL = 'http://nodejs.org/';
 
-short.connect('mongodb://localhost/short');
+/*!
+  Connect to MongoDB w/ MongooseJS
+ */
 
-short.connection.on('open', function(){
-  /* connected to mongodb */
-});
+short.connect(MONGO_DB_SHORT);
 
 short.connection.on('error', function(error){
   throw new Error(error);
@@ -89,14 +89,6 @@ var url = require('url'),
  */
 
 short.connect(MONGO_DB_SHORT);
-
-/*!
-  MongoDB Mongoose on open|error Events
- */
-
-short.connection.on('open', function(){
-  console.log('mongodb connected');
-});
 
 short.connection.on('error', function(error){
   throw new Error(error);
