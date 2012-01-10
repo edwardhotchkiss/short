@@ -15,7 +15,9 @@ var ShortURLSchema = new Schema({
   URL         : { type : String },
   hash        : { type : String, unique: true },
   hits        : { type : Number, default: 0 },
-  created_at  : { type : Date, default: Date.now }
+  created_at  : { type : Date, default: Date.now },
+  uniques     : { type : Number, default: 0},
+  visitors    : { type : [String]}
 });
 
 var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
@@ -27,13 +29,13 @@ var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
 */
 
 
-ShortURL.findByHash = function(hash, callback) {
-  ShortURL.findOne({ hash: hash }, function(error, URL) {
+ShortURL.findByHash = function (hash, options, callback) {
+  ShortURL.findOne({ hash: hash }, function (error, URL) {
     if (error) {
       callback(error, null);
     } else {
       if (URL) {
-        ShortURL.updateHitsById(URL, callback);
+        ShortURL.updateHitsById(URL, options, callback);
       } else {
         callback(null, null);
       }
@@ -47,7 +49,11 @@ ShortURL.findByHash = function(hash, callback) {
   @param {Function} callback
 */
 
-ShortURL.updateHitsById = function(URL, callback) {
+ShortURL.updateHitsById = function (URL, options, callback) {
+  if (options && options.visitor && URL.visitors.indexOf(options.visitor) === -1) {
+    URL.visitors.push(options.visitor);
+    URL.uniques += 1;
+  }
   URL.hits += 1;
   URL.save(function (error) {
     if (error) {
