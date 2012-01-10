@@ -142,8 +142,10 @@ app.get('*', function(request, response) {
   if (request.url === '/favicon.ico') {
     return;
   }
-  var hash = request.url.slice(1);
-  short.retrieve(hash, function (error, shortURLObject) {
+  var hash = request.url.slice(1),
+      visitor = req.connection.remoteAddress,
+      options = {visitor: visitor};
+  short.retrieve(hash, options, function (error, shortURLObject) {
     if (error) {
       console.error(error);
     } else {
