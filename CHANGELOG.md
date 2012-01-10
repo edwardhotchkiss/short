@@ -1,4 +1,15 @@
 
+1.3.0 / 2012-01-10 
+==================
+
+  * [docs] updated mongoose.connection events
+  * Merge pull request #12 from thinkroth/master
+  * Added unique tracking
+  * Merge pull request #11 from thinkroth/master
+  * Removed duplicate mongo query
+  * Merge pull request #10 from thinkroth/master
+  * Added length option
+
 1.2.1 / 2012-01-06 
 ==================
 
