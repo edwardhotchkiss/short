@@ -33,14 +33,7 @@ ShortURL.findByHash = function(hash, callback) {
       callback(error, null);
     } else {
       if (URL) {
-        var id = URL._id;
-        ShortURL.updateHitsById(id, function(error) {
-          if (error) {
-            callback(error, null);
-          } else {
-            callback(null, URL);
-          }
-        });
+        ShortURL.updateHitsById(URL, callback);
       } else {
         callback(null, null);
       }
@@ -54,14 +47,13 @@ ShortURL.findByHash = function(hash, callback) {
   @param {Function} callback
 */
 
-ShortURL.updateHitsById = function(id, callback) {
-  ShortURL.findById(id, function (error, URL) {
-    var hits = URL.hits + 1;
-    if (!error) {
-      URL.hits = hits;
-      URL.save(function(error) {
-        callback(error);
-      });
+ShortURL.updateHitsById = function(URL, callback) {
+  URL.hits += 1;
+  URL.save(function (error) {
+    if (error) {
+      callback(error, null);
+    } else {
+      callback(null, URL);
     }
   });
 };
