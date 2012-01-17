@@ -1,6 +1,6 @@
 
 /*!
-  Core Modules
+  requires
  */
 
 var vows = require('vows'),
@@ -9,15 +9,23 @@ var vows = require('vows'),
     short = require('../lib/short');
 
 /*!
-  Connect to MongoDB
+  connect to mongodb
  */
 
-var MONGO_DB_SHORT = process.env.MONGO_DB_SHORT || 'mongodb://localhost/short';
+var MONGO_DB = process.env.MONGO_DB || 'mongodb://localhost/short';
 
-short.connect(MONGO_DB_SHORT);
+short.connect(MONGO_DB);
+
+short.connection.on('open', function() {
+  console.log('connected to mongodb');  
+});
+
+short.connection.on('error', function(error) {
+  throw new Error(error);  
+});
 
 /*!
-  Vows / npm test
+  add suites to vows
  */
 
 vows.describe('general module tests').addBatch({
