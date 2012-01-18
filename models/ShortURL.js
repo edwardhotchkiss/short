@@ -6,9 +6,9 @@
 
  */
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , ObjectId = Schema.ObjectId;
 
 var ShortURLSchema = new Schema({
   id          : { type : ObjectId },
@@ -27,7 +27,6 @@ var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
   @param {String} hash
   @param {Function} callback
 */
-
 
 ShortURL.findByHash = function (hash, options, callback) {
   ShortURL.findOne({ hash: hash }, function (error, URL) {
