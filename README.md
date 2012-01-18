@@ -33,9 +33,9 @@ Using short within your own project as an API interface
 
 ```javascript
 
-var short = require('../../lib/short'),
+var short = require('../../lib/short')
     // URL to Shorten
-    URL = 'http://nodejs.org/';
+  , URL = 'http://nodejs.org/';
 
 /*!
   Connect to MongoDB w/ MongooseJS
@@ -77,13 +77,13 @@ Complete Example with Express
 
 ```javascript
 
-var url = require('url'),
-    express = require('express'),
-    short = require('short'),
-    app = express.createServer(),
-    port = process.env.PORT || 8000,
-    ShortURL = short.ShortURL,
-    MONGO_DB_SHORT = process.env.MONGO_DB_SHORT || 'mongodb://localhost/short';
+var url = require('url')
+  , express = require('express')
+  , short = require('short')
+  , app = express.createServer()
+  , port = process.env.PORT || 8000
+  , ShortURL = short.ShortURL
+  , MONGO_DB = process.env.MONGO_DB || 'mongodb://localhost/short';
 
 /*!
   Connect to MongoDB w/ MongooseJS
@@ -112,8 +112,8 @@ app.post('/api/*', function(request, response) {
   if (request.url === '/favicon.ico') {
     return;
   }
-  var URL = request.body['url'] || req.url.slice(5),
-      options = {length: 5};
+  var URL = request.body['url'] || req.url.slice(5)
+    , options = {length: 5};
   short.generate(URL, options, function(error, shortURL) {
     if (error) {
       console.error(error);
