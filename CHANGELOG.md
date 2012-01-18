@@ -1,4 +1,21 @@
 
+1.3.1 / 2012-01-18 
+==================
+
+  * [docs] update
+  * update npmignore for benchmarks and docs
+  * nicely generated docs by paige
+  * setup `paige` : `[sudo] npm install paige -g
+  * use contributors full name
+  * hanging commas, exports
+  * [refactor]
+  * /lib/short.js hanging commas
+  * hanging commas
+  * [tests] god I love those hanging commas :P
+  * basic benchmarking
+  * [tests] use Makefile so that we can add benchmarking also
+  * [tests] use benchmark.js
+
 1.3.0 / 2012-01-10 
 ==================
 
