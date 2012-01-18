@@ -23,6 +23,7 @@ Installation
 ```bash
 $ npm install short
 ```
+
 ***
 
 Basic API Usage
@@ -193,7 +194,7 @@ License (MIT)
 Copyright (c) 2011, Edward Hotchkiss.
 
 ### Author: [Edward Hotchkiss][0]
-### Contributors: [Kevin][1]
+### Contributors: [Kevin Roth][1]
 
 [0]: http://ingklabs.com/
 [1]: http://github.com/thinkroth/
