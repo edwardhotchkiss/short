@@ -1,0 +1,194 @@
+<!DOCTYPE html> <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      <title>Short</title>   <style>     body {       font-size: 16px;       line-height: 24px;       background: #fff url("bg.png");       color: #252519;       font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;       padding: 0 0 50px 50px;     }     div.container {       width: 720px;       margin: 50px 0 50px 50px;     }     p {       width: 550px;     }       #documentation p {         margin-bottom: 4px;       }     a, a:visited {       padding: 0 2px;       text-decoration: none;       background: #dbe6f3;       color: #3f6fa5;     }     a:active, a:hover {       color: #dbe6f3;       background: #3f6fa5;     }     h1, h2, h3, h4, h5, h6 {       margin-top: 40px;       width: 550px;       line-height: 1.25em;     }     b.header {       font-size: 18px;     }     span.alias {       font-size: 14px;       font-style: italic;       margin-left: 20px;     }     table, tr, td {       margin: 0; padding: 0;     }       td {         padding: 2px 12px 2px 0;       }     ul {       list-style-type: circle;       padding: 0 0 0 20px;     }       li {         width: 500px;         margin-bottom: 10px;       }     code, pre, tt {       font-family: Monaco, Consolas, "Lucida Console", monospace;       font-size: 12px;       line-height: 18px;       color: #555529;     }       pre {         font-size: 12px;         padding: 2px 0 2px 12px;         border-left: 6px solid #aaaa99;         margin: 0px 0 30px;       }            #ribbon {      line-height: 0;     }          #ribbon:hover {      background: none;     }          #ribbon img {      position: fixed;      top: 0;      right: 0;      border: 0;      z-index: 2;     }   </style> </head> <body>      <a id="ribbon" href="https://github.com/edwardhotchkiss/short">    <img src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"      alt="Fork me on GitHub"></a>      <h1>Short</h1>        <em>Node.JS URL Shortener backed by Mongoose.JS w/ Examples</em>         <h3>Source files:</h3>   <ol>            <li><a href="short.html">short.js</a></li>            <li><a href="ShortURL.html">ShortURL.js</a></li>        </ol>      <h1>Short <a href="http://travis-ci.org/edwardhotchkiss/short"><img src="https://secure.travis-ci.org/edwardhotchkiss/short.png" alt="Build Status" title="" /></a></h1>
+
+<blockquote>
+  <p>NodeJS URL Shortener backed by MongooseJS w/ Examples</p>
+</blockquote>
+
+<h1>Notes migrating to 1.0.0+</h1>
+
+<p>NOTE: If you've used any version of Short before 1.0.0, please note the new API. This is a finalized API &amp; with the previous API structure being incompatible with Short 1.0.0+</p>
+
+<h1>Running Examples</h1>
+
+<pre>
+$ git clone git@github.com:edwardhotchkiss/short.git
+$ cd short/examples/basic
+$ node api.js
+</pre>
+
+<h1>Installation</h1>
+
+<pre>
+$ npm install short
+</pre>
+
+<hr />
+
+<h1>Basic API Usage</h1>
+
+<p>Using short within your own project as an API interface</p>
+
+<pre>
+
+var short = require('../../lib/short'),
+    // URL to Shorten
+    URL = 'http://nodejs.org/';
+
+/*!
+  Connect to MongoDB w/ MongooseJS
+ */
+
+short.connect(MONGO_DB_SHORT);
+
+short.connection.on('error', function(error){
+  throw new Error(error);
+});
+
+/*!
+  Generate a Shortened URL
+  Retrieve URL based on Generated Hash
+ */
+
+short.generate(URL, function(error, shortURL) {
+  if (error) {
+    throw new Error(error);
+  } else {
+    short.retrieve(shortURL.hash, function(error, shortenedURLObject) {
+      if (error) {
+        throw new Error(error);
+      } else {
+        // URL
+        console.log('URL:', shortenedURLObject.URL);
+        // Base 62 Hash
+        console.log('hash:', shortenedURLObject.hash);
+        process.exit(0);
+      };
+    });
+  }
+});
+
+</pre>
+
+<h1>Complete Example with Express</h1>
+
+<pre>
+
+var url = require('url'),
+    express = require('express'),
+    short = require('short'),
+    app = express.createServer(),
+    port = process.env.PORT || 8000,
+    ShortURL = short.ShortURL,
+    MONGO_DB_SHORT = process.env.MONGO_DB_SHORT || 'mongodb://localhost/short';
+
+/*!
+  Connect to MongoDB w/ MongooseJS
+ */
+
+short.connect(MONGO_DB_SHORT);
+
+short.connection.on('error', function(error){
+  throw new Error(error);
+});
+
+/*!
+  Setup ExpressJS
+ */
+
+app.configure('production', function() {
+  app.use(express.static(__dirname+'/public'));
+  app.use(express.bodyParser());
+});
+
+/*!
+  API Calls to Generate Short URLs
+ */
+
+app.post('/api/*', function(request, response) {
+  if (request.url === '/favicon.ico') {
+    return;
+  }
+  var URL = request.body['url'] || req.url.slice(5),
+      options = {length: 5};
+  short.generate(URL, options, function(error, shortURL) {
+    if (error) {
+      console.error(error);
+    } else {
+      var URL = shortURL.URL;
+      var hash = shortURL.hash;
+      var tiny_url = 'http://' + request.headers.host + '/' + hash;
+      console.log('URL is ' + tiny_url);
+      response.send({ url:tiny_url });
+    }
+  });
+});
+
+/*!
+  Retrieve Short URLs & Redirect
+ */
+
+app.get('*', function(request, response) {
+  if (request.url === '/favicon.ico') {
+    return;
+  }
+  var hash = request.url.slice(1),
+      visitor = req.connection.remoteAddress,
+      options = {visitor: visitor};
+  short.retrieve(hash, options, function (error, shortURLObject) {
+    if (error) {
+      console.error(error);
+    } else {
+      if (shortURLObject) {
+        response.redirect(shortURLObject.URL, 302);
+      } else {
+        response.send('URL not found!', 404);
+        response.end();
+      }
+    }
+  });
+});
+
+/*!
+  ExpressJS, Listen on <port>
+ */
+
+app.listen(port, function() {
+  console.log('Server running on port ' + port);
+});
+
+</pre>
+
+<h2>Connecting (cURL) to the Complete Example</h2>
+
+<p>Just add the domain you'd like to the end of localhost:8080/api</p>
+
+<pre>
+$ curl localhost:8080/api/http://www.longdomain.com/
+</pre>
+
+<h1>Pull Requests</h1>
+
+<ul>
+<li>fork</li>
+<li>clone</li>
+<li>improve</li>
+<li>pull request</li>
+<li><strong>instant karma!</strong></li>
+</ul>
+
+<h1>Run Tests (git clone)</h1>
+
+<pre>
+ bash
+$ git clone git@github.com:edwardhotchkiss/short.git
+$ cd short
+$ npm test
+</pre>
+
+<h1>License (MIT)</h1>
+
+<p>Copyright (c) 2011, Edward Hotchkiss.</p>
+
+<h3>Author: <a href="http://ingklabs.com/">Edward Hotchkiss</a></h3>
+
+<h3>Contributors: <a href="http://github.com/thinkroth/">Kevin Roth</a></h3> </body> </html>
