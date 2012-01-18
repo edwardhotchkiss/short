@@ -3,15 +3,10 @@
   Core Modules
  */
 
-var short = require('../../lib/short'),
-    // URL to Shorten
-    URL = 'http://nodejs.org/';
+var short = require('../../lib/short')
+  , URL = 'http://nodejs.org/';
 
 short.connect('mongodb://localhost/short');
-
-short.connection.on('open', function(){
-  /* connected to mongodb */
-});
 
 short.connection.on('error', function(error){
   throw new Error(error);
@@ -30,9 +25,7 @@ short.generate(URL, function(error, shortURL) {
       if (error) {
         throw new Error(error);
       } else {
-        // URL
         console.log('URL:', shortenedURLObject.URL);
-        // Base 62 Hash
         console.log('hash:', shortenedURLObject.hash);
         process.exit(0);
       }
