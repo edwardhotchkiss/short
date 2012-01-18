@@ -3,10 +3,10 @@
   requires
  */
 
-var vows = require('vows'),
-    assert = require('assert'),
-    mongoose = require('mongoose'),
-    short = require('../lib/short');
+var vows = require('vows')
+  , assert = require('assert')
+  , mongoose = require('mongoose')
+  , short = require('../lib/short');
 
 /*!
   connect to mongodb
@@ -15,10 +15,6 @@ var vows = require('vows'),
 var MONGO_DB = process.env.MONGO_DB || 'mongodb://localhost/short';
 
 short.connect(MONGO_DB);
-
-short.connection.on('open', function() {
-  console.log('connected to mongodb');  
-});
 
 short.connection.on('error', function(error) {
   throw new Error(error);  
