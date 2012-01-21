@@ -1,4 +1,9 @@
 
+1.4.0 / 2012-01-20 
+==================
+
+  * Added atomic logging (thinkroth/master) / options.hash
+
 1.3.1 / 2012-01-18 
 ==================
 
