@@ -29,6 +29,7 @@ var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
 */
 
 ShortURL.findByHash = function (hash, options, callback) {
+  options.hash = hash;
   ShortURL.findOne({ hash: hash }, function (error, URL) {
     if (error) {
       callback(error, null);
@@ -50,17 +51,23 @@ ShortURL.findByHash = function (hash, options, callback) {
 
 ShortURL.updateHitsById = function (URL, options, callback) {
   if (options && options.visitor && URL.visitors.indexOf(options.visitor) === -1) {
-    URL.visitors.push(options.visitor);
-    URL.uniques += 1;
+    ShortURL.update({'hash': options.hash}, {
+      $inc: {hits: 1, uniques: 1}, $push: {visitors: options.visitor}}, { multi: true}, function (error) {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, URL);
+      }
+    });
+  } else {
+    ShortURL.update({'hash': options.hash}, { $inc: {hits: 1}}, { multi: true}, function (error) {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, URL);
+      }
+    });
   }
-  URL.hits += 1;
-  URL.save(function (error) {
-    if (error) {
-      callback(error, null);
-    } else {
-      callback(null, URL);
-    }
-  });
 };
 
 module.exports = ShortURL;
