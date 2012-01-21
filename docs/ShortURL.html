@@ -28,6 +28,7 @@
 <span class="cm">*/</span>
 
 <span class="nx">ShortURL</span><span class="p">.</span><span class="nx">findByHash</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">hash</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">options</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">;</span>
   <span class="nx">ShortURL</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="nx">hash</span><span class="o">:</span> <span class="nx">hash</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">URL</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
@@ -49,17 +50,23 @@
 
 <span class="nx">ShortURL</span><span class="p">.</span><span class="nx">updateHitsById</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">URL</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">options</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">visitor</span> <span class="o">&amp;&amp;</span> <span class="nx">URL</span><span class="p">.</span><span class="nx">visitors</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">visitor</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">URL</span><span class="p">.</span><span class="nx">visitors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">visitor</span><span class="p">);</span>
-    <span class="nx">URL</span><span class="p">.</span><span class="nx">uniques</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nx">ShortURL</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="s1">&#39;hash&#39;</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">hash</span><span class="p">},</span> <span class="p">{</span>
+      <span class="nx">$inc</span><span class="o">:</span> <span class="p">{</span><span class="nx">hits</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">uniques</span><span class="o">:</span> <span class="mi">1</span><span class="p">},</span> <span class="nx">$push</span><span class="o">:</span> <span class="p">{</span><span class="nx">visitors</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">visitor</span><span class="p">}},</span> <span class="p">{</span> <span class="nx">multi</span><span class="o">:</span> <span class="kc">true</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">URL</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">ShortURL</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="s1">&#39;hash&#39;</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">hash</span><span class="p">},</span> <span class="p">{</span> <span class="nx">$inc</span><span class="o">:</span> <span class="p">{</span><span class="nx">hits</span><span class="o">:</span> <span class="mi">1</span><span class="p">}},</span> <span class="p">{</span> <span class="nx">multi</span><span class="o">:</span> <span class="kc">true</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">URL</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
   <span class="p">}</span>
-  <span class="nx">URL</span><span class="p">.</span><span class="nx">hits</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="nx">URL</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">URL</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
 <span class="p">};</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ShortURL</span><span class="p">;</span>
