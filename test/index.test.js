@@ -58,6 +58,20 @@ vows.describe('general module tests').addBatch({
     'and shortURL should be an object':function(error, shortURL){
       assert.isObject(shortURL);
     }
+  },
+  'when `.list()ing Shortened URLs':{
+    topic:function() {
+      short.list(this.callback);
+    },
+    'there should be no errors':function(error, urls){
+      assert.isNull(error);
+    },
+    'urls should be defined':function(error, urls){
+      assert.isNotNull(urls);
+    },
+    'and urls should be an object':function(error, urls){
+      assert.equal(typeof(urls), 'object');
+    }
   }
 }).export(module);
 
