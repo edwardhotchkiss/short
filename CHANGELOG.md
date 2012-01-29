@@ -1,4 +1,13 @@
 
+1.4.2 / 2012-01-29 
+==================
+
+  * [minor] update basic example
+  * remove full express example
+  * for full example please see @thinkroth 's work
+  * Merge pull request #15 from hudgins/master
+  * Fix for retrieve(hash, callback) throwing due to null options.
+
 1.4.1 / 2012-01-23 
 ==================
 
