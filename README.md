@@ -33,15 +33,14 @@ Using short within your own project as an API interface
 
 ```javascript
 
-var short = require('../../lib/short')
-    // URL to Shorten
-  , URL = 'http://nodejs.org/';
-
 /*!
-  Connect to MongoDB w/ MongooseJS
+  Core Modules
  */
 
-short.connect(MONGO_DB_SHORT);
+var short = require('short')
+  , URL = 'http://nodejs.org/';
+
+short.connect('mongodb://localhost/short');
 
 short.connection.on('error', function(error){
   throw new Error(error);
@@ -60,12 +59,10 @@ short.generate(URL, function(error, shortURL) {
       if (error) {
         throw new Error(error);
       } else {
-        // URL
         console.log('URL:', shortenedURLObject.URL);
-        // Base 62 Hash
         console.log('hash:', shortenedURLObject.hash);
         process.exit(0);
-      };
+      }
     });
   }
 });

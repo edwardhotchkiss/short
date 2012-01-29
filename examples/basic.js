@@ -3,7 +3,7 @@
   Core Modules
  */
 
-var short = require('../../lib/short')
+var short = require('short')
   , URL = 'http://nodejs.org/';
 
 short.connect('mongodb://localhost/short');
