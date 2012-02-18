@@ -20,8 +20,7 @@
     "mongoose":"2.4.8"
   },
   "devDependencies":{
-    "vows":"0.6.0",
-    "benchmark":"0.3.0"
+    "vows":"0.6.0"
   },
   "licenses":[{
     "type":"MIT",
