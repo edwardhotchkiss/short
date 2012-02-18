@@ -1,4 +1,12 @@
 
+1.4.3 / 2012-02-18 
+==================
+
+  * [dist] version bump
+  * [engine] prepare for 0.8.0, bump required engine
+  * [minor] formating
+  * dont benchmark without tracking
+
 1.4.2 / 2012-01-29 
 ==================
 
