@@ -13,6 +13,7 @@ var mongoose = require('mongoose')
 var ShortURLSchema = new Schema({
   id          : { type : ObjectId },
   URL         : { type : String },
+  qr          : { type : String },
   hash        : { type : String, unique: true },
   hits        : { type : Number, default: 0 },
   created_at  : { type : Date, default: Date.now },
