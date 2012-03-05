@@ -25,6 +25,8 @@ short.connection.on('error', function(error) {
  */
 
 vows.describe('general module tests').addBatch({
+
+  // core
   'when instantiating short':{
     topic:function(){
       return short;
@@ -33,6 +35,8 @@ vows.describe('general module tests').addBatch({
       assert.isObject(topic);
     },
   },
+
+  // hasher
   'when hashing `http://google.com/`':{
     topic:function(){
       return short.hasher('http://google.com/');
@@ -44,7 +48,9 @@ vows.describe('general module tests').addBatch({
       assert.strictEqual(hash.length, 6);
     }
   },
-  'when creating and retrieving a short url':{
+
+  // creating
+  'when creating a short url':{
     topic:function() {
       var URL = 'http://nodejs.org/';
       short.generate(URL, this.callback);
@@ -59,6 +65,8 @@ vows.describe('general module tests').addBatch({
       assert.isObject(shortURL);
     }
   },
+
+  // .list()
   'when `.list()ing Shortened URLs':{
     topic:function() {
       short.list(this.callback);
@@ -73,6 +81,7 @@ vows.describe('general module tests').addBatch({
       assert.equal(typeof(urls), 'object');
     }
   }
+
 }).export(module);
 
 /* EOF */
