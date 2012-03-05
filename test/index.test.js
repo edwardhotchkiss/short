@@ -49,11 +49,18 @@ vows.describe('general module tests').addBatch({
     }
   },
 
-  // creating
-  'when creating a short url':{
+  // creating & retrieving
+  'when creating a short url and then retrieving it':{
     topic:function() {
+      var self = this;
       var URL = 'http://nodejs.org/';
-      short.generate(URL, this.callback);
+      short.generate(URL, function(error, URLObject) {
+        if (error) {
+          self.callback(error, null);
+        } else {
+          short.retrieve(URLObject.hash, self.callback);
+        };
+      });
     },
     'there should be no errors':function(error, shortURL){
       assert.isNull(error);
@@ -69,7 +76,8 @@ vows.describe('general module tests').addBatch({
   // .list()
   'when `.list()ing Shortened URLs':{
     topic:function() {
-      short.list(this.callback);
+      var self = this;
+      short.list(self.callback);
     },
     'there should be no errors':function(error, urls){
       assert.isNull(error);
