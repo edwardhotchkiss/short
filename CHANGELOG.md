@@ -1,4 +1,17 @@
 
+1.4.4 / 2012-03-05 
+==================
+
+  * [tests] data validity
+  * [tests] added short.retrieve
+  * [npm registry] search for bit.ly?
+  * [deps] bump vows to 0.6.2
+  * [tests] spring cleaning
+  * [docs] &&
+  * [deps] removed Makefile (use npm test now)
+  * [npm] use `npm test` vs. Makefile for single command
+  * [package] 0.6.X
+
 1.4.3 / 2012-02-18 
 ==================
 
