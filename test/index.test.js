@@ -68,8 +68,11 @@ vows.describe('general module tests').addBatch({
     'shortURL should be defined':function(error, shortURL){
       assert.isNotNull(shortURL);
     },
-    'and shortURL should be an object':function(error, shortURL){
+    'shortURL should be an object':function(error, shortURL){
       assert.isObject(shortURL);
+    },
+    'and shortURL.URL should be "http://nodejs.org/"':function(error, shortURL){
+      assert.equal(shortURL.URL, 'http://nodejs.org/');
     }
   },
 
