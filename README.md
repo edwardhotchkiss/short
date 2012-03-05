@@ -88,8 +88,7 @@ Run Tests (git clone)
 
 ``` bash
 $ git clone git@github.com:edwardhotchkiss/short.git
-$ cd short
-$ npm test
+$ cd short && npm test
 ```
 
 License (MIT)
