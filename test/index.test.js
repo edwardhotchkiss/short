@@ -1,6 +1,6 @@
 
-/*!
-  requires
+/**
+ * requires
  */
 
 var vows = require('vows')
@@ -8,8 +8,8 @@ var vows = require('vows')
   , mongoose = require('mongoose')
   , short = require('../lib/short');
 
-/*!
-  connect to mongodb
+/**
+ * connect to mongodb
  */
 
 var MONGO_DB = process.env.MONGO_DB || 'mongodb://localhost/short';
@@ -20,8 +20,8 @@ short.connection.on('error', function(error) {
   throw new Error(error);  
 });
 
-/*!
-  add suites to vows
+/**
+ * add suites to vows
  */
 
 vows.describe('general module tests').addBatch({

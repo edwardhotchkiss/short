@@ -1,9 +1,9 @@
 
-/*!
-
-  Mongoose Model:
-    - ShortURL
-
+/**
+ *
+ * Mongoose Model:
+ *  - ShortURL
+ *
  */
 
 var mongoose = require('mongoose')
@@ -22,11 +22,12 @@ var ShortURLSchema = new Schema({
 
 var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
 
-/*!
-  @method findByHash
-  @param {String} hash
-  @param {Function} callback
-*/
+/**
+ * @model ShortURL
+ * @method findByHash
+ * @param {String} hash
+ * @param {Function} callback
+ */
 
 ShortURL.findByHash = function (hash, options, callback) {
   options.hash = hash;
@@ -43,10 +44,11 @@ ShortURL.findByHash = function (hash, options, callback) {
   });
 };
 
-/*!
-  @method updatehitsById
-  @param {ObjectId} id
-  @param {Function} callback
+/**
+ * @model ShortURL
+ * @method updatehitsById
+ * @param {ObjectId} id
+ * @param {Function} callback
 */
 
 ShortURL.updateHitsById = function (URL, options, callback) {
