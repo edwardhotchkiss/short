@@ -17,7 +17,7 @@
     "node":">= 0.6.12 < 0.7.0"
   },
   "dependencies":{
-    "mongoose":"2.4.8"
+    "mongoose":"2.5.10"
   },
   "devDependencies":{
     "vows":"0.6.2"
