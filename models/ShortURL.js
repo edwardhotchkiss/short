@@ -8,6 +8,7 @@
 
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
+  , short = require('../lib/short')
   , ObjectId = Schema.ObjectId;
 
 var ShortURLSchema = new Schema({
@@ -21,15 +22,13 @@ var ShortURLSchema = new Schema({
   visitors    : { type : [String]}
 });
 
-var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
-
 /*!
   @method findByHash
   @param {String} hash
   @param {Function} callback
 */
 
-ShortURL.findByHash = function (hash, options, callback) {
+ShortURLSchema.statics.findByHash = function (hash, options, callback) {
   options.hash = hash;
   ShortURL.findOne({ hash: hash }, function (error, URL) {
     if (error) {
@@ -50,7 +49,7 @@ ShortURL.findByHash = function (hash, options, callback) {
   @param {Function} callback
 */
 
-ShortURL.updateHitsById = function (URL, options, callback) {
+ShortURLSchema.statics.updateHitsById = function (URL, options, callback) {
   if (options && options.visitor && URL.visitors.indexOf(options.visitor) === -1) {
     ShortURL.update({'hash': options.hash}, {
       $inc: {hits: 1, uniques: 1}, $push: {visitors: options.visitor}}, { multi: true}, function (error) {
@@ -71,6 +70,4 @@ ShortURL.updateHitsById = function (URL, options, callback) {
   }
 };
 
-module.exports = ShortURL;
-
-/* EOF */
+module.exports = short.connection.model('ShortURL', ShortURLSchema);
