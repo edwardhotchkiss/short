@@ -1,4 +1,17 @@
 
+1.4.5 / 2012-03-17 
+==================
+
+  * [comments]
+  * [merge] fix conflicts, remove statics
+  * Merge branch 'ifit-master'
+  * [merge] fix conflicts
+  * Create Connection Option
+  * [docs] rebuilt
+  * [comments] update style for docs
+  * [deps] bump mongoose version to 2.5.10
+  * [engine] prep for 0.8.0, req 0.6.12+
+
 1.4.4 / 2012-03-05 
 ==================
 
