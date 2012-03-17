@@ -1,12 +1,11 @@
-<!DOCTYPE html>  <html> <head>   <title>short.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="rocco.css" /> </head> <body> <div id="navbar">     <h3>Short - Node.JS URL Shortener backed by Mongoose.JS w/ Examples<em></em></h3>   </div>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">           <a class="source" href="index.html">Index</a>                                           <a class="source" href="short.html">                 short.js               </a>                                           <a class="source" href="ShortURL.html">                 ShortURL.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               short.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="cm">/**</span>
+<!DOCTYPE html>  <html> <head>   <title>short.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="rocco.css" /> </head> <body> <div id="navbar">     <h3>Short - Node.JS URL Shortener backed by Mongoose.JS w/ Examples<em></em></h3>   </div>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">           <a class="source" href="index.html">Index</a>                                           <a class="source" href="ShortURL.html">                 ShortURL.js               </a>                                           <a class="source" href="short.html">                 short.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               short.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="cm">/**</span>
 <span class="cm"> * Core Modules</span>
 <span class="cm"> */</span>
 
 <span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">ShortURL</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="nx">__dirname</span><span class="o">+</span><span class="s1">&#39;/../models/ShortURL.js&#39;</span><span class="p">);</span>
+  <span class="p">,</span> <span class="nx">ShortURL</span><span class="p">;</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * @class short</span>
 <span class="cm"> * @method hasher</span>
 <span class="cm"> * @param {String} URL URL to be hashed</span>
 <span class="cm"> * @returns {String} hash Base 62 hash representation of the URL</span>
@@ -23,24 +22,49 @@
 <span class="p">};</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * @class short</span>
 <span class="cm"> * @method connect</span>
 <span class="cm"> * @param {String} mongdb Mongo DB String to connect to</span>
 <span class="cm"> */</span>
 
 <span class="kd">var</span> <span class="nx">connect</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">connect</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mongodb</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">mongodb</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>expose connection object</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+  <span class="nx">createModel</span><span class="p">();</span>
 <span class="p">};</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * @class short</span>
+<span class="cm"> * @expose createConnection</span>
+<span class="cm"> * This will create a connection, instead of using the global mongo connection.</span>
+<span class="cm"> */</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">createConnection</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">createConnection</span><span class="p">(</span><span class="nx">MongoURI</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">(</span><span class="nx">MongoURI</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;connection error: &#39;</span> <span class="o">+</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">).</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Event when the db is connected</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">connection</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span>  <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;short package opened connection to mongo db: &#39;</span> <span class="o">+</span> <span class="nx">MongoURI</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="nx">createModel</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @method createModel</span>
+<span class="cm"> * Connect after a connection has been declared</span>
+<span class="cm"> * it is OK if not connected yet, mongoose buffers request</span>
+<span class="cm"> */</span>
+
+<span class="kd">function</span> <span class="nx">createModel</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">ShortURL</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">ShortURL</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../models/ShortURL&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
 <span class="cm"> * @method generate</span>
 <span class="cm"> * @param {String} URL URL to create a Short URL of</span>
 <span class="cm"> * @param {Functon} callback Callback to execute on completion</span>
 <span class="cm"> */</span>
 
 <span class="kd">var</span> <span class="nx">generate</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">generate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">URL</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">hashedURL</span><span class="p">;</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>options takes an optional object literal
+  <span class="kd">var</span> <span class="nx">hashedURL</span><span class="p">;</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>options takes an optional object literal
 right now it only supports an options.length argument</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">2</span>  <span class="o">&amp;&amp;</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">callback</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
     <span class="nx">hashedURL</span> <span class="o">=</span> <span class="nx">hasher</span><span class="p">(</span><span class="nx">URL</span><span class="p">);</span>
@@ -55,7 +79,7 @@ right now it only supports an options.length argument</p>             </td>     
     <span class="nx">URL</span> <span class="o">:</span> <span class="nx">URL</span><span class="p">,</span>
     <span class="nx">hash</span> <span class="o">:</span> <span class="nx">hashedURL</span>
   <span class="p">});</span>
-  <span class="nx">item</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">item</span><span class="p">){</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>tries to save to mongodb, if it exists it retries</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">===</span> <span class="mi">11000</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">item</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">item</span><span class="p">){</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>tries to save to mongodb, if it exists it retries</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">===</span> <span class="mi">11000</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hashedURL</span> <span class="o">+</span> <span class="s1">&#39; already exists! retrying!&#39;</span><span class="p">);</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">generate</span><span class="p">(</span><span class="nx">URL</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
@@ -69,7 +93,6 @@ right now it only supports an options.length argument</p>             </td>     
 <span class="p">}</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * @class short</span>
 <span class="cm"> * @method retrieve</span>
 <span class="cm"> * @param {String} hash Hashed Base 62 URL to retrieve</span>
 <span class="cm"> * @param {Functon} callback Callback to execute on completion</span>
@@ -79,7 +102,7 @@ right now it only supports an options.length argument</p>             </td>     
   <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">2</span>  <span class="o">&amp;&amp;</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">callback</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
     <span class="nx">options</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">3</span>  <span class="o">&amp;&amp;</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Object</span> <span class="o">&amp;&amp;</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>options takes an optional object literal
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">3</span>  <span class="o">&amp;&amp;</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Object</span> <span class="o">&amp;&amp;</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>options takes an optional object literal
 right now it only supports an options.visitor argument</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;retrieve requires a hash and callback function!&quot;</span><span class="p">);</span>
   <span class="p">}</span>
