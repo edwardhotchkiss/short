@@ -3,13 +3,11 @@
 
 > NodeJS URL Shortener backed by MongooseJS w/ Examples
 
-Notes migrating to 1.0.0+
-===============
+## Notes migrating to 1.0.0+
 
   NOTE: If you've used any version of Short before 1.0.0, please note the new API. This is a finalized API & with the previous API structure being incompatible with Short 1.0.0+
 
-Running Examples
-================
+## Running Examples
 
 ```bash
 $ git clone git@github.com:edwardhotchkiss/short.git
@@ -17,8 +15,7 @@ $ cd short/examples/basic
 $ node api.js
 ```
 
-Installation
-============
+## Installation
 
 ```bash
 $ npm install short
@@ -26,8 +23,7 @@ $ npm install short
 
 ***
 
-Basic API Usage
-===============
+## Basic API Usage
 
 Using short within your own project as an API interface
 
@@ -69,8 +65,7 @@ short.generate(URL, function(error, shortURL) {
 
 ```
 
-Complete Example with Express
-=============================
+## Complete Example with Express
 
 **Please see** https://github.com/thinkroth/shortUrl
 
@@ -83,16 +78,14 @@ Pull Requests
   * pull request
   * **instant karma!**
 
-Run Tests (git clone)
-=====================
+## Run Tests (git clone)
 
 ``` bash
 $ git clone git@github.com:edwardhotchkiss/short.git
 $ cd short && npm test
 ```
 
-License (MIT)
-=============
+## License (MIT)
 
 Copyright (c) 2011, Edward Hotchkiss.
 
