@@ -1,4 +1,15 @@
 
+1.4.6 / 2012-03-18 
+==================
+
+  * [dist] version bump
+  * [tests] run all in /test incase of contrib
+  * [docs] contribute
+  * [node] engine req bump to 0.6.13
+  * [cleanup] remove examples/, single file already in README
+  * [cleanup] mmhmmm
+  * [docs] updated for 1.4.5
+
 1.4.5 / 2012-03-17 
 ==================
 
