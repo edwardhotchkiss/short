@@ -27,6 +27,6 @@
     "url":"http://github.com/edwardhotchkiss/short/LICENSE"
   }],
   "scripts":{
-    "test":"vows test/index.test.js --spec"
+    "test":"vows test/*.test.js --spec"
   }
 }
