@@ -69,21 +69,15 @@ short.generate(URL, function(error, shortURL) {
 
 **Please see** https://github.com/thinkroth/shortUrl
 
-Pull Requests
-=============
+## Contribute
 
-  * fork
-  * clone
-  * improve
-  * pull request
-  * **instant karma!**
-
-## Run Tests (git clone)
-
-``` bash
-$ git clone git@github.com:edwardhotchkiss/short.git
-$ cd short && npm test
-```
+  1. Fork
+  2. Clone forked repository
+  3. Add some sweet code
+  4. Tests still passing? Run tests with `npm test`
+  5. Add a test if adding a feature
+  6. Pull Request
+  7. **Instant Karma!**
 
 ## License (MIT)
 
@@ -92,5 +86,5 @@ Copyright (c) 2011, Edward Hotchkiss.
 ### Author: [Edward Hotchkiss][0]
 ### Contributors: [Kevin Roth][1]
 
-[0]: http://ingklabs.com/
+[0]: http://edwardhotchkiss.com/
 [1]: http://github.com/thinkroth/
