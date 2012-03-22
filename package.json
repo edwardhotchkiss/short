@@ -23,6 +23,9 @@
   "devDependencies":{
     "vows":"0.6.2"
   },
+  "bugs": {
+    "url": "https://github.com/edwardhotchkiss/short/issues"
+  },
   "licenses":[{
     "type":"MIT",
     "url":"http://github.com/edwardhotchkiss/short/LICENSE"
