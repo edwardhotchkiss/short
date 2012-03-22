@@ -3,7 +3,9 @@
   "author":"Edward Hotchkiss <edward@edwardhotchkiss.com>",
   "contributors":[
     { "name": "Edward Hotchkiss", "email": "edwardhotchkiss@me.com" },
-    { "name": "Kevin Roth", "github": "http://github.com/thinkroth" }
+    { "name": "Kevin Roth", "github": "http://github.com/thinkroth" },
+    { "name": "Chase Brammer", "github":"https://github.com/cbrammer" },
+    { "name": "Chris Lynch", "github":"https://github.com/lynchseattle" }
   ],
   "homepage": "http://edwardhotchkiss.github.com/short",
   "description":"NodeJS URL Shortener backed by MongooseJS w/ Examples",
