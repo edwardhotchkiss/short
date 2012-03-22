@@ -63,6 +63,34 @@ short.generate(URL, function(error, shortURL) {
   }
 });
 
+/*!
+  Generate a Shortened URL with custom data stored on the hashed URL
+  Retrieve URL based on Generated Hash and retrieve custom data
+  Make sure to use obj.data.toObject() for accessing your custom data
+ */
+
+ var short = require('short')
+   , URL = 'http://nodejs.org/',
+   , options = {length: 6, data: {'my':'value','is':2}}
+   ;
+
+short.generate(URL, options, function(error, shortURL) {
+  if (error) {
+    throw new Error(error);
+  } else {
+    short.retrieve(shortURL.hash, function(error, shortenedURLObject) {
+      if (error) {
+        throw new Error(error);
+      } else {
+        console.log('URL:', shortenedURLObject.URL);
+        console.log('hash:', shortenedURLObject.hash);
+        console.log('data:', JSON.stringify(shortenedURLObject.data.toObject()));
+        process.exit(0);
+      }
+    });
+  }
+});
+
 ```
 
 ## Complete Example with Express
