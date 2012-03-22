@@ -5,6 +5,7 @@
     { "name": "Edward Hotchkiss", "email": "edwardhotchkiss@me.com" },
     { "name": "Kevin Roth", "github": "http://github.com/thinkroth" }
   ],
+  "homepage": "http://edwardhotchkiss.github.com/short",
   "description":"NodeJS URL Shortener backed by MongooseJS w/ Examples",
   "version":"1.4.6",
   "repository":{
