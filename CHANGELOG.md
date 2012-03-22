@@ -1,4 +1,13 @@
 
+1.5.0 / 2012-03-22 
+==================
+
+  * [deps] bump mongoose to 2.5.13
+  * [package] updated contributors
+  * Merge pull request #17 from lynchseattle/master
+  * Support for nodejs 0.6.11
+  * Added support for passing in custom data in the options when creating a new URL. This will store any meta-information on that URL that you might want to track. A possible use for this would be an ecommerce store with a shortened URL, but you might want to track that this URL was generated for a specific micro-site or even a specific customer.
+
 1.4.7 / 2012-03-22 
 ==================
 
