@@ -1,4 +1,11 @@
 
+1.4.7 / 2012-03-22 
+==================
+
+  * [package] added bugs
+  * [package] added "homepage"
+  * [deps] bump mongoose to 2.5.12
+
 1.4.6 / 2012-03-18 
 ==================
 
