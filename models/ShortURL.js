@@ -1,10 +1,7 @@
 
 /**
- *
- * Mongoose Model:
- *  - ShortURL
- *
- */
+ * @model ShortURL
+ **/
 
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
@@ -29,7 +26,7 @@ var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
  * @method findByHash
  * @param {String} hash
  * @param {Function} callback
- */
+ **/
 
 ShortURL.findByHash = function (hash, options, callback) {
   options.hash = hash;
@@ -51,7 +48,7 @@ ShortURL.findByHash = function (hash, options, callback) {
  * @method updatehitsById
  * @param {ObjectId} id
  * @param {Function} callback
-*/
+**/
 
 ShortURL.updateHitsById = function (URL, options, callback) {
   if (options && options.visitor && URL.visitors.indexOf(options.visitor) === -1) {

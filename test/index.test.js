@@ -1,7 +1,7 @@
 
 /**
  * requires
- */
+ **/
 
 var vows = require('vows')
   , assert = require('assert')
@@ -10,7 +10,7 @@ var vows = require('vows')
 
 /**
  * connect to mongodb
- */
+ **/
 
 var MONGO_DB = process.env.MONGO_DB || 'mongodb://localhost/short';
 
@@ -22,7 +22,7 @@ short.connection.on('error', function(error) {
 
 /**
  * add suites to vows
- */
+ **/
 
 vows.describe('general module tests').addBatch({
 
