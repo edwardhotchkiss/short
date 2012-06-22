@@ -1,7 +1,7 @@
 
-# Short [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/short.png)](http://travis-ci.org/edwardhotchkiss/short)
+# short [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/short.png)](http://travis-ci.org/edwardhotchkiss/short)
 
-> NodeJS URL Shortener backed by MongooseJS w/ Examples
+> Node.JS URL Shortener backed by Mongoose.JS w/ Examples
 
 ## Notes migrating to 1.0.0+
 
@@ -29,12 +29,16 @@ Using short within your own project as an API interface
 
 ```javascript
 
-/*!
-  Core Modules
+/**
+ * @list dependencies
  */
 
 var short = require('short')
   , URL = 'http://nodejs.org/';
+
+/**
+ * @description connect to mongodb
+ **/
 
 short.connect('mongodb://localhost/short');
 
@@ -42,10 +46,10 @@ short.connection.on('error', function(error){
   throw new Error(error);
 });
 
-/*!
-  Generate a Shortened URL
-  Retrieve URL based on Generated Hash
- */
+/**
+ * @description generate a shortened URL
+ * ... Retrieve URL based on Generated Hash
+ **/
 
 short.generate(URL, function(error, shortURL) {
   if (error) {
@@ -63,11 +67,11 @@ short.generate(URL, function(error, shortURL) {
   }
 });
 
-/*!
-  Generate a Shortened URL with custom data stored on the hashed URL
-  Retrieve URL based on Generated Hash and retrieve custom data
-  Make sure to use obj.data.toObject() for accessing your custom data
- */
+/**
+ * @description Generate a Shortened URL with custom data stored on the hashed URL
+ * Retrieve URL based on Generated Hash and retrieve custom data
+ * Make sure to use obj.data.toObject() for accessing your custom data
+ **/
 
  var short = require('short')
    , URL = 'http://nodejs.org/',
