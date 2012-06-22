@@ -75,8 +75,7 @@ short.generate(URL, function(error, shortURL) {
 
  var short = require('short')
    , URL = 'http://nodejs.org/',
-   , options = {length: 6, data: {'my':'value','is':2}}
-   ;
+   , options = {length: 6, data: {'my':'value','is':2}};
 
 short.generate(URL, options, function(error, shortURL) {
   if (error) {
@@ -119,9 +118,9 @@ Copyright (c) 2011, Edward Hotchkiss.
 
 ### Contributors: 
 
-[Kevin Roth][1]
-[Chase Brammer][2]
-[Chris Lynch][3]
+[Kevin Roth][1], 
+[Chase Brammer][2], 
+[Chris Lynch][3], 
 
 [0]: http://edwardhotchkiss.com/
 [1]: http://github.com/thinkroth/

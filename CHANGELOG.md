@@ -1,8 +1,15 @@
 
-1.5.1 / 2012-04-24 
+1.5.1 / 2012-06-22 
 ==================
 
-  * [node] engine bump dep to 0.6.15
+  * [docs] add latest contributors [@cbrammer, @lynchseattle] to README
+  * [deps] bunp mongoose to latest
+  * [docs] stylize
+  * [dictatorship] dont <= node engine version, prep for 0.8.x
+  * [syntax] i prefer **/ over */ now, corrected
+  * [gitignore] added
+  * [email] have author match address in contributors, thanks @isaacs
+  * [node] test for 0.4.0
 
 1.5.0 / 2012-03-22 
 ==================
