@@ -31,7 +31,7 @@ Using short within your own project as an API interface
 
 /**
  * @list dependencies
- */
+ **/
 
 var short = require('short')
   , URL = 'http://nodejs.org/';
@@ -116,7 +116,15 @@ short.generate(URL, options, function(error, shortURL) {
 Copyright (c) 2011, Edward Hotchkiss.
 
 ### Author: [Edward Hotchkiss][0]
-### Contributors: [Kevin Roth][1]
+
+### Contributors: 
+
+[Kevin Roth][1]
+[Chase Brammer][2]
+[Chris Lynch][3]
 
 [0]: http://edwardhotchkiss.com/
 [1]: http://github.com/thinkroth/
+[2]: https://github.com/cbrammer/
+[3]: https://github.com/lynchseattle/
+
