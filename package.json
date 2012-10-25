@@ -33,6 +33,6 @@
     "url":"http://github.com/edwardhotchkiss/short/LICENSE"
   }],
   "scripts":{
-    "test":"vows test/*.test.js --spec"
+    "test":"make test"
   }
 }
