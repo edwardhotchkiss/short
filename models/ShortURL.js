@@ -16,7 +16,7 @@ var ShortURLSchema = new Schema({
   created_at : { 'type' : Date, 'default': Date.now },
   uniques    : { 'type' : Number, 'default': 0},
   visitors   : { 'type' : [String]},
-  data       : { 'any'  : Schema.Types.Mixed }
+  data       : { 'type'  : Schema.Types.Mixed }
 });
 
 var ShortURL = mongoose.model('ShortURL', ShortURLSchema);

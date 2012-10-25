@@ -78,8 +78,11 @@ vows.describe('general module tests').addBatch({
       topic:function() {
         var self = this;
         var URL = 'http://nodejs.org/';
-        var customData = {string_data:'test', num_data:2};
-        short.generate(URL, {length:5, data:customData}, function(error, URLObject) {
+        var customData = {
+          string_data : 'test',
+          num_data    : 2
+        };
+        short.generate(URL, { length:5, data:customData}, function(error, URLObject) {
           if (error) {
             self.callback(error, null);
           } else {
@@ -94,16 +97,16 @@ vows.describe('general module tests').addBatch({
         assert.strictEqual(shortURL.hash.length, 5);
       },
       'the custom data should exist':function(error, shortURL){
-        assert.isNotNull(shortURL.data.toObject());
+        assert.isNotNull(shortURL.data);
       },
       'the custom data should be an object':function(error, shortURL){
-        assert.isObject(shortURL.data.toObject());
+        assert.isObject(shortURL);
       },
       'the custom data.string_data should have a value of "test"':function(error, shortURL){
-        assert.equal(shortURL.data.toObject().string_data, 'test');
+        assert.equal(shortURL.data.string_data, 'test');
       },
       'the custom data.num_data should have a value of 2':function(error, shortURL){
-        assert.equal(shortURL.data.toObject().num_data, 2);
+        assert.equal(shortURL.data.num_data, 2);
       }
     }
   },
