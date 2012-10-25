@@ -9,7 +9,7 @@
   ],
   "homepage": "http://edwardhotchkiss.github.com/short",
   "description":"NodeJS URL Shortener backed by MongooseJS w/ Examples",
-  "version":"1.6.0",
+  "version":"1.7.0",
   "repository":{
     "type":"git",
     "url":"git://github.com/edwardhotchkiss/short.git"
