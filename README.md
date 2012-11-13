@@ -7,14 +7,6 @@
 
   NOTE: Now using `short-id` for valid sha1 hashes
 
-## Running Examples
-
-```bash
-$ git clone git@github.com:edwardhotchkiss/short.git
-$ cd short/examples/basic
-$ node api.js
-```
-
 ## Installation
 
 ```bash

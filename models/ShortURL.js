@@ -17,60 +17,8 @@ var ShortURLSchema = new Schema({
   uniques    : { type : Number, default: 0},
   visitors   : { type : [String]},
   data       : { type  : Schema.Types.Mixed }
-});
+}, { versionKey: false });
 
-var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
-
-/**
- * @model ShortURL
- * @method findByHash
- * @param {String} hash
- * @param {Function} callback
- **/
-
-ShortURL.findByHash = function (hash, options, callback) {
-  options.hash = hash;
-  ShortURL.findOne({ hash: hash }, function (error, URL) {
-    if (error) {
-      callback(error, null);
-    } else {
-      if (URL) {
-        ShortURL.updateHitsById(URL, options, callback);
-      } else {
-        callback(null, null);
-      }
-    }
-  });
-};
-
-/**
- * @model ShortURL
- * @method updatehitsById
- * @param {ObjectId} id
- * @param {Function} callback
-**/
-
-ShortURL.updateHitsById = function (URL, options, callback) {
-  if (options && options.visitor && URL.visitors.indexOf(options.visitor) === -1) {
-    ShortURL.update({'hash': options.hash}, {
-      $inc: {hits: 1, uniques: 1}, $push: {visitors: options.visitor}}, { multi: true}, function (error) {
-      if (error) {
-        callback(error, null);
-      } else {
-        callback(null, URL);
-      }
-    });
-  } else {
-    ShortURL.update({'hash': options.hash}, { $inc: {hits: 1}}, { multi: true}, function (error) {
-      if (error) {
-        callback(error, null);
-      } else {
-        callback(null, URL);
-      }
-    });
-  }
-};
-
-module.exports = ShortURL;
+var ShortURL = module.exports = mongoose.model('ShortURL', ShortURLSchema);
 
 /* EOF */
