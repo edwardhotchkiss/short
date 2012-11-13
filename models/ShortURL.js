@@ -8,15 +8,15 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 var ShortURLSchema = new Schema({
-  id         : { 'type' : ObjectId },
-  URL        : { 'type' : String },
-  qr         : { 'type' : String },
-  hash       : { 'type' : String, unique: true },
-  hits       : { 'type' : Number, 'default': 0 },
-  created_at : { 'type' : Date, 'default': Date.now },
-  uniques    : { 'type' : Number, 'default': 0},
-  visitors   : { 'type' : [String]},
-  data       : { 'type'  : Schema.Types.Mixed }
+  id         : { type : ObjectId },
+  URL        : { type : String },
+  qr         : { type : String },
+  hash       : { type : String, unique: true },
+  hits       : { type : Number, default: 0 },
+  created_at : { type : Date, default: Date.now },
+  uniques    : { type : Number, default: 0},
+  visitors   : { type : [String]},
+  data       : { type  : Schema.Types.Mixed }
 });
 
 var ShortURL = mongoose.model('ShortURL', ShortURLSchema);
