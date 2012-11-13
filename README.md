@@ -25,8 +25,7 @@ Using short within your own project as an API interface
  * @list dependencies
  **/
 
-var short = require('short')
-  , URL = 'http://nodejs.org/';
+var short = require('short');
 
 /**
  * @description connect to mongodb
@@ -39,11 +38,15 @@ short.connection.on('error', function(error){
 });
 
 /**
- * @description generate a shortened URL
- * ... Retrieve URL based on Generated Hash
+ * @description generate a shortened URL.
+ * then retrieve URL based on Generated Hash
  **/
 
-short.generate(URL, function(error, shortURL) {
+var options = {
+  URL : 'http://nodejs.org/',
+};
+
+short.generate(options, function(error, shortURL) {
   if (error) {
     throw new Error(error);
   } else {
@@ -60,16 +63,22 @@ short.generate(URL, function(error, shortURL) {
 });
 
 /**
- * @description Generate a Shortened URL with custom data stored on the hashed URL
- * Retrieve URL based on Generated Hash and retrieve custom data
+ * @description Generate a Shortened URL with custom data stored along with hashed URL
+ * Next, Retrieve URL based on Generated Hash and retrieve custom data
  * Make sure to use obj.data.toObject() for accessing your custom data
  **/
 
- var short = require('short')
-   , URL = 'http://nodejs.org/',
-   , options = {length: 6, data: {'my':'value','is':2}};
+var short = require('short')
 
-short.generate(URL, options, function(error, shortURL) {
+var options = {
+  URL  : 'http://nodejs.org/',
+  data : {
+    string_data : 'test',
+    num_data    : 2
+  }
+};
+
+short.generate(options, function(error, shortURL) {
   if (error) {
     throw new Error(error);
   } else {
@@ -87,10 +96,6 @@ short.generate(URL, options, function(error, shortURL) {
 });
 
 ```
-
-## Complete Example with Express
-
-**Please see** https://github.com/thinkroth/shortUrl
 
 ## Contribute
 
