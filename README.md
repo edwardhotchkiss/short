@@ -3,9 +3,9 @@
 
 > Node.JS URL Shortener backed by Mongoose.JS w/ Examples
 
-## Notes migrating to 1.0.0+
+## Notes migrating to 2.0.0+
 
-  NOTE: If you've used any version of Short before 1.0.0, please note the new API. This is a finalized API & with the previous API structure being incompatible with Short 1.0.0+
+  NOTE: Now using `short-id` for valid sha1 hashes
 
 ## Running Examples
 
