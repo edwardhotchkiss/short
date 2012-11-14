@@ -13,7 +13,6 @@ var ShortURLSchema = new Schema({
   URL        : { type : String, unique: true },
   hash       : { type : String, unique: true },
   hits       : { type : Number, default: 0 },
-  uniques    : { type : Number, default: 0 },
   data       : { type : Schema.Types.Mixed },
   created_at : { type : Date, default: Date.now },
 }, { versionKey: false });

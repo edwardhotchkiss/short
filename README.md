@@ -3,10 +3,6 @@
 
 > Node.JS URL Shortener backed by Mongoose.JS w/ Examples
 
-## Notes migrating to 2.0.0+
-
-  NOTE: Now using `short-id` for valid sha1 hashes
-
 ## Installation
 
 ```bash
@@ -33,7 +29,7 @@ var short = require('short');
 
 short.connect('mongodb://localhost/short');
 
-short.connection.on('error', function(error){
+short.connection.on('error', function(error) {
   throw new Error(error);
 });
 

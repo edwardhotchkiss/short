@@ -8,19 +8,80 @@ var vows = require('vows')
   , mongoose = require('mongoose')
   , short = require('../lib/short');
 
-/**
- * @description Log outbound, Connect to mongodb
- **/
-
 mongoose.set('debug', true);
+
+/**
+ * @description connect to mongodb
+ **/
 
 short.connect('mongodb://localhost/short');
 
-var generatePromise = short.generate({ URL : 'http://edwardhotchkiss.com/' });
-generatePromise.then(function(ShortURLObject) {
-  console.log(ShortURLObject);
-}, function(error) {
-  throw new Error(require('util').inspect(error));
-});
+/**
+ * @description add suites to vows
+ **/
+
+vows.describe('general module tests').addBatch({
+
+  'when instantiating short':{
+    topic: function(){
+      return short;
+    },
+    'short should be an object': function(topic) {
+      assert.isObject(topic);
+    },
+  },
+
+  'when creating a short url and then retrieving it':{
+    topic:function() {
+      var context = this;
+      var generatePromise = short.generate({ URL : 'http://nodejs.org/' });
+      generatePromise.then(function(ShortURLObject) {
+        var hash = ShortURLObject.hash;
+        var retrievePromise = short.retrieve(hash);
+        retrievePromise.then(function(ShortURLObject) {
+          context.callback(null, ShortURLObject);
+        }, function(error) {
+          context.callback(error, null);
+        })
+      }, function(error) {
+        context.callback(error, null);
+      });
+    },
+    'there should be no errors':function(error, ShortURLObject) {
+      assert.isNull(error);
+    },
+    'shortURL should be defined':function(error, ShortURLObject) {
+      assert.isNotNull(ShortURLObject);
+    },
+    'shortURL should be an object':function(error, ShortURLObject) {
+      assert.isObject(ShortURLObject);
+    },
+    'and shortURL.URL should be "http://nodejs.org/"':function(error, ShortURLObject) {
+      assert.equal(ShortURLObject.URL, 'http://nodejs.org/');
+    }
+  },
+
+  'when .list()ing Shortened URLs':{
+    topic: function() {
+      var context = this;
+      var listPromise = short.list();
+      listPromise.then(function(URLs) {
+        context.callback(null, URLs);
+      }, function(error) {
+        context.callback(error, null);
+      });
+    },
+    'there should be no errors':function(error, URLs) {
+      assert.isNull(error);
+    },
+    'URLs should be defined':function(error, URLs){
+      assert.isNotNull(URLs);
+    },
+    'and URLs should be an array of objects':function(error, URLs) {
+      assert.isArray(URLs);
+    }
+  }
+
+}).export(module);
 
 /* EOF */

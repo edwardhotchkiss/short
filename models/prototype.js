@@ -18,13 +18,13 @@ exports.Model = function(mongooseModel) {
 * @description Wraps mongodb find with a promise
 **/
 
-exports.Model.prototype.find = function find(query, fields, options) {
+exports.Model.prototype.find = function(query, fields, options) {
   var promise = new Promise();
-  this.baseModel.find(query, fields, options, function(error, results) {
+  this.baseModel.find(query, fields, options, function(error, result) {
     if (error) {
       promise.reject(error, true);
     } else {
-      promise.resolve(results);
+      promise.resolve(result);
     };
   });
   return promise;
@@ -35,13 +35,34 @@ exports.Model.prototype.find = function find(query, fields, options) {
  * @description Wraps mongodb findOne with a promise
  **/
 
-exports.Model.prototype.findOne = function findOne(query, fields, options) {
+exports.Model.prototype.findOne = function(query, fields, options) {
   var promise = new Promise();
-  this.baseModel.findOne(query, fields, options, function(error, results) {
+  this.baseModel.findOne(query, fields, options, function(error, result) {
     if (error) {
       promise.reject(error, true);
     } else {
-      promise.resolve(results);
+      promise.resolve(result);
+    };
+  });
+  return promise;
+};
+
+/**
+ * @method update
+ * @description Wraps mongodb update with a promise
+ **/
+
+exports.Model.prototype.update = function(query, document, options) {
+  var promise = new APP.Promise()
+  this.baseModel.update(query, document, options, function(error, affected) {
+    if (error) {
+      promise.reject(error, true);
+    } else {
+      if (affected === 0) {
+        promise.reject(new Error('MongoDB - Cannot find Document'), true);
+      } else {
+        promise.resolve();
+      };
     };
   });
   return promise;
@@ -52,7 +73,7 @@ exports.Model.prototype.findOne = function findOne(query, fields, options) {
 * @description Wraps mongodb create with a promise
 **/
 
-exports.Model.prototype.create = function create(data) {
+exports.Model.prototype.create = function(data) {
   var promise = new Promise();
   this.baseModel.create(data, function(error, result) {
     if (error) {
@@ -73,7 +94,7 @@ exports.Model.prototype.create = function create(data) {
  * @description Searches for a document, otherwise creates it.
  **/
 
-exports.Model.prototype.findOrCreate = function findOrCreate(query, document, options) {
+exports.Model.prototype.findOrCreate = function(query, document, options) {
   var promise = new Promise();
   var baseModel = this;
   baseModel.findOne(query, function(error, result) { 
@@ -85,10 +106,8 @@ exports.Model.prototype.findOrCreate = function findOrCreate(query, document, op
       };
     } else {
       if (result && result !== null) {
-        // already exists
         promise.resolve(result);
       } else {
-        // need to  create
         var createPromise = baseModel.create(document);
         createPromise.then(function(result) {
           promise.resolve(result);
