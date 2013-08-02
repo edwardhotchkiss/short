@@ -1,7 +1,9 @@
 
 # short [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/short.png)](http://travis-ci.org/edwardhotchkiss/short)
 
-> Node.JS URL Shortener backed by Mongoose.JS w/ Examples
+> Node.js URL Shortener backed by Mongoose.js
+
+_**No Callbacks, just Promises!**_
 
 ## Installation
 
@@ -13,84 +15,71 @@ $ npm install short
 
 ## Basic API Usage
 
-Using short within your own project as an API interface
+**Generates a Shortened URL Doc, then retrieves it for demo:**
 
 ```javascript
+var shortURLPromise
+  , short = require('../lib/short');
 
-/**
- * @list dependencies
- **/
-
-var short = require('short');
-
-/**
- * @description connect to mongodb
- **/
-
+// connect to mongodb
 short.connect('mongodb://localhost/short');
 
 short.connection.on('error', function(error) {
   throw new Error(error);
 });
 
-/**
- * @description generate a shortened URL.
- * then retrieve URL based on Generated Hash
- **/
-
-var options = {
-  URL : 'http://nodejs.org/',
-};
-
-short.generate(options, function(error, shortURL) {
-  if (error) {
-    throw new Error(error);
-  } else {
-    short.retrieve(shortURL.hash, function(error, shortenedURLObject) {
-      if (error) {
-        throw new Error(error);
-      } else {
-        console.log('URL:', shortenedURLObject.URL);
-        console.log('hash:', shortenedURLObject.hash);
-        process.exit(0);
-      }
-    });
-  }
+// promise to generate a shortened URL.
+var shortURLPromise = short.generate({
+  URL : 'http://nodejs.org/'
 });
 
-/**
- * @description Generate a Shortened URL with custom data stored along with hashed URL
- * Next, Retrieve URL based on Generated Hash and retrieve custom data
- * Make sure to use obj.data.toObject() for accessing your custom data
- **/
-
-var short = require('short')
-
-var options = {
-  URL  : 'http://nodejs.org/',
-  data : {
-    string_data : 'test',
-    num_data    : 2
-  }
-};
-
-short.generate(options, function(error, shortURL) {
+// gets back the short url document, and then retrieves it
+shortURLPromise.then(function(mongodbDoc) {
+  console.log('>> created short URL:');
+  console.log(mongodbDoc);
+  console.log('>> retrieving short URL: %s', mongodbDoc.hash);
+  short.retrieve(mongodbDoc.hash).then(function(result) {
+    console.log('>> retrieve result:');
+    console.log(result);
+    process.exit(0);
+  }, function(error) {
+    if (error) {
+      throw new Error(error);
+    }
+  });
+}, function(error) {
   if (error) {
     throw new Error(error);
-  } else {
-    short.retrieve(shortURL.hash, function(error, shortenedURLObject) {
-      if (error) {
-        throw new Error(error);
-      } else {
-        console.log('URL:', shortenedURLObject.URL);
-        console.log('hash:', shortenedURLObject.hash);
-        console.log('data:', JSON.stringify(shortenedURLObject.data.toObject()));
-        process.exit(0);
-      }
-    });
   }
 });
+```
 
+**Listing all Shortened URLs in DB:**
+
+```javascript
+var listURLsPromise
+  , short = require('../lib/short');
+
+// connect to mongodb
+short.connect('mongodb://localhost/short');
+
+short.connection.on('error', function(error) {
+  throw new Error(error);
+});
+
+// promise to retrieve all shortened URLs
+listURLsPromise = short.list();
+
+// output all resulting shortened url db docs
+listURLsPromise.then(function(URLsDocument) {
+  console.log('>> listing (%d) Shortened URLS:', URLsDocument.length);
+  console.log(URLsDocument);
+  process.exit(0);
+}, function(error) {
+  if (error) {
+    throw new Error(error);
+  }
+});
 ```
 
 ## Contribute
@@ -105,7 +94,7 @@ short.generate(options, function(error, shortURL) {
 
 ## License (MIT)
 
-Copyright (c) 2011, Edward Hotchkiss.
+Copyright (c) 2011-2013, Edward Hotchkiss.
 
 ### Author: [Edward Hotchkiss][0]
 

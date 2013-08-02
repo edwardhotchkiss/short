@@ -1,7 +1,7 @@
 
 /**
  * @list dependencies
- **/
+ */
 
 var vows = require('vows')
   , assert = require('assert')
@@ -12,13 +12,13 @@ mongoose.set('debug', true);
 
 /**
  * @description connect to mongodb
- **/
+ */
 
 short.connect('mongodb://localhost/short');
 
 /**
  * @description add suites to vows
- **/
+ */
 
 vows.describe('general module tests').addBatch({
 
@@ -36,8 +36,8 @@ vows.describe('general module tests').addBatch({
       var context = this;
       var generatePromise = short.generate({ URL : 'http://nodejs.org/' });
       generatePromise.then(function(ShortURLObject) {
-        var hash = ShortURLObject.hash;
-        var retrievePromise = short.retrieve(hash);
+        var hash = ShortURLObject.hash
+          , retrievePromise = short.retrieve(hash);
         retrievePromise.then(function(ShortURLObject) {
           context.callback(null, ShortURLObject);
         }, function(error) {
@@ -83,5 +83,3 @@ vows.describe('general module tests').addBatch({
   }
 
 }).export(module);
-
-/* EOF */

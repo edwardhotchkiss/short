@@ -1,22 +1,22 @@
 
 /**
  * @list dependencies
- **/
+ */
 
 var Promise = require('node-promise').Promise;
 
 /**
- * @description Wrapper for models to return promises versus executing immediately
- **/
+ * @description wrapper for models to return promises versus executing immediately
+ */
 
 exports.Model = function(mongooseModel) {
   this.baseModel = mongooseModel;
 };
 
 /**
-* @method find
-* @description Wraps mongodb find with a promise
-**/
+ * @method find
+ * @description wraps mongodb find with a promise
+ */
 
 exports.Model.prototype.find = function(query, fields, options) {
   var promise = new Promise();
@@ -32,8 +32,8 @@ exports.Model.prototype.find = function(query, fields, options) {
 
 /**
  * @method findOne
- * @description Wraps mongodb findOne with a promise
- **/
+ * @description wraps mongodb findOne with a promise
+ */
 
 exports.Model.prototype.findOne = function(query, fields, options) {
   var promise = new Promise();
@@ -49,8 +49,8 @@ exports.Model.prototype.findOne = function(query, fields, options) {
 
 /**
  * @method update
- * @description Wraps mongodb update with a promise
- **/
+ * @description wraps mongodb update with a promise
+ */
 
 exports.Model.prototype.update = function(query, document, options) {
   var promise = new APP.Promise()
@@ -69,9 +69,9 @@ exports.Model.prototype.update = function(query, document, options) {
 };
 
 /**
-* @method create
-* @description Wraps mongodb create with a promise
-**/
+ * @method create
+ * @description wraps mongodb create with a promise
+ */
 
 exports.Model.prototype.create = function(data) {
   var promise = new Promise();
@@ -91,13 +91,13 @@ exports.Model.prototype.create = function(data) {
 
 /**
  * @method findOrCreate
- * @description Searches for a document, otherwise creates it.
- **/
+ * @description searches for a document, otherwise creates it.
+ */
 
 exports.Model.prototype.findOrCreate = function(query, document, options) {
-  var promise = new Promise();
-  var baseModel = this;
-  baseModel.findOne(query, function(error, result) { 
+  var promise = new Promise()
+    , baseModel = this;
+  baseModel.findOne(query, function(error, result) {
     if (error) {
       if (error.message && error.message.match(/E11000/i)) {
         promise.reject(new Error('Duplicate Key Error'), true);
@@ -119,5 +119,3 @@ exports.Model.prototype.findOrCreate = function(query, document, options) {
   });
   return promise;
 };
-
-/* EOF */
