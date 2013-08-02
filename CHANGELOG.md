@@ -1,4 +1,15 @@
 
+1.7.0 / 2012-10-25 
+==================
+
+  * [dist] version bump
+  * [test] updated mongoose and reflected within tests
+  * [package] reference makefile in scripts
+  * [Makefile] use Makefile "make test" (who does not love bash?) ALONG WITH "npm test"
+  * [deps] update mongoose and vows to latest
+  * [node] bump version
+  * [minor] code cleanup and segmentation
+
 1.6.0 / 2012-06-27 
 ==================
 

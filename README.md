@@ -1,19 +1,9 @@
 
 # short [![Build Status](https://secure.travis-ci.org/edwardhotchkiss/short.png)](http://travis-ci.org/edwardhotchkiss/short)
 
-> Node.JS URL Shortener backed by Mongoose.JS w/ Examples
+> Node.js URL Shortener backed by Mongoose.js
 
-## Notes migrating to 1.0.0+
-
-  NOTE: If you've used any version of Short before 1.0.0, please note the new API. This is a finalized API & with the previous API structure being incompatible with Short 1.0.0+
-
-## Running Examples
-
-```bash
-$ git clone git@github.com:edwardhotchkiss/short.git
-$ cd short/examples/basic
-$ node api.js
-```
+_**No Callbacks, just Promises!**_
 
 ## Installation
 
@@ -25,80 +15,72 @@ $ npm install short
 
 ## Basic API Usage
 
-Using short within your own project as an API interface
+**Generates a Shortened URL Doc, then retrieves it for demo:**
 
 ```javascript
+var shortURLPromise
+  , short = require('../lib/short');
 
-/**
- * @list dependencies
- **/
-
-var short = require('short')
-  , URL = 'http://nodejs.org/';
-
-/**
- * @description connect to mongodb
- **/
-
+// connect to mongodb
 short.connect('mongodb://localhost/short');
 
-short.connection.on('error', function(error){
+short.connection.on('error', function(error) {
   throw new Error(error);
 });
 
-/**
- * @description generate a shortened URL
- * ... Retrieve URL based on Generated Hash
- **/
-
-short.generate(URL, function(error, shortURL) {
-  if (error) {
-    throw new Error(error);
-  } else {
-    short.retrieve(shortURL.hash, function(error, shortenedURLObject) {
-      if (error) {
-        throw new Error(error);
-      } else {
-        console.log('URL:', shortenedURLObject.URL);
-        console.log('hash:', shortenedURLObject.hash);
-        process.exit(0);
-      }
-    });
-  }
+// promise to generate a shortened URL.
+var shortURLPromise = short.generate({
+  URL : 'http://nodejs.org/'
 });
 
-/**
- * @description Generate a Shortened URL with custom data stored on the hashed URL
- * Retrieve URL based on Generated Hash and retrieve custom data
- * Make sure to use obj.data.toObject() for accessing your custom data
- **/
-
- var short = require('short')
-   , URL = 'http://nodejs.org/',
-   , options = {length: 6, data: {'my':'value','is':2}};
-
-short.generate(URL, options, function(error, shortURL) {
+// gets back the short url document, and then retrieves it
+shortURLPromise.then(function(mongodbDoc) {
+  console.log('>> created short URL:');
+  console.log(mongodbDoc);
+  console.log('>> retrieving short URL: %s', mongodbDoc.hash);
+  short.retrieve(mongodbDoc.hash).then(function(result) {
+    console.log('>> retrieve result:');
+    console.log(result);
+    process.exit(0);
+  }, function(error) {
+    if (error) {
+      throw new Error(error);
+    }
+  });
+}, function(error) {
   if (error) {
     throw new Error(error);
-  } else {
-    short.retrieve(shortURL.hash, function(error, shortenedURLObject) {
-      if (error) {
-        throw new Error(error);
-      } else {
-        console.log('URL:', shortenedURLObject.URL);
-        console.log('hash:', shortenedURLObject.hash);
-        console.log('data:', JSON.stringify(shortenedURLObject.data.toObject()));
-        process.exit(0);
-      }
-    });
   }
 });
-
 ```
 
-## Complete Example with Express
+**Listing all Shortened URLs in DB:**
 
-**Please see** https://github.com/thinkroth/shortUrl
+```javascript
+var listURLsPromise
+  , short = require('../lib/short');
+
+// connect to mongodb
+short.connect('mongodb://localhost/short');
+
+short.connection.on('error', function(error) {
+  throw new Error(error);
+});
+
+// promise to retrieve all shortened URLs
+listURLsPromise = short.list();
+
+// output all resulting shortened url db docs
+listURLsPromise.then(function(URLsDocument) {
+  console.log('>> listing (%d) Shortened URLS:', URLsDocument.length);
+  console.log(URLsDocument);
+  process.exit(0);
+}, function(error) {
+  if (error) {
+    throw new Error(error);
+  }
+});
+```
 
 ## Contribute
 
@@ -112,7 +94,7 @@ short.generate(URL, options, function(error, shortURL) {
 
 ## License (MIT)
 
-Copyright (c) 2011, Edward Hotchkiss.
+Copyright (c) 2011-2013, Edward Hotchkiss.
 
 ### Author: [Edward Hotchkiss][0]
 
