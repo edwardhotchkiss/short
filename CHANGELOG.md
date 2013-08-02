@@ -1,4 +1,19 @@
 
+2.0.0 / 2013-08-01 
+==================
+
+ * [dist] release 2.0.0
+ * Merge branch 'develop'
+ * [promises] use node-promises my my I hate callbacks
+ * Merge branch 'promises' into develop
+ * [refactor] node-promise full integration and detailed sha1 hahs refactor
+ * [promises] dont use callbacks
+ * [docs] update for new api
+ * [rewrite]
+ * [model] cleanup
+ * [license] updated YYYY
+ * [travis, hasher] updated travis for just 0.8.x, added short-id using a genuine sha1 sum for a short url
+
 1.7.0 / 2012-10-25 
 ==================
 
