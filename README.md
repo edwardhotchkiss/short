@@ -109,3 +109,7 @@ Copyright (c) 2011-2013, Edward Hotchkiss.
 [2]: https://github.com/cbrammer/
 [3]: https://github.com/lynchseattle/
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/edwardhotchkiss/short/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
