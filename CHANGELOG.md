@@ -1,4 +1,12 @@
 
+2.1.0 / 2013-11-06 
+==================
+
+ * Merge pull request #20 from lbj96347/master
+ * [fix]fix hits feature
+ * Merge pull request #19 from bitdeli-chef/master
+ * Add a Bitdeli badge to README
+
 2.0.0 / 2013-08-01 
 ==================
 
