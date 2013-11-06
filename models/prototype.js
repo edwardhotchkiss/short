@@ -53,7 +53,7 @@ exports.Model.prototype.findOne = function(query, fields, options) {
  */
 
 exports.Model.prototype.update = function(query, document, options) {
-  var promise = new APP.Promise()
+  var promise = new Promise()
   this.baseModel.update(query, document, options, function(error, affected) {
     if (error) {
       promise.reject(error, true);
