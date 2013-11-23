@@ -1,4 +1,12 @@
 
+2.2.0 / 2013-11-22 
+==================
+
+ * [contrib] added @pwmckenna
+ * [minor] format
+ * Merge pull request #22 from pwmckenna/patch-1
+ * Update short.js
+
 2.1.0 / 2013-11-06 
 ==================
 
