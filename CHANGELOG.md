@@ -1,4 +1,17 @@
 
+2.3.0 / 2014-07-01 
+==================
+
+ * [dist] bump
+ * [shields/badges/whatever] deps
+ * [node] bump travis and package reqs to .10.x
+ * [package, contribs] added @nippe
+ * [minor, license] remove line, derp!
+ * Merge pull request #23 from nippe/master
+ * Removed an extra promise layer
+ * Update README.md
+ * Delete paige.config
+
 2.2.0 / 2013-11-22 
 ==================
 
