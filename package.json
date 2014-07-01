@@ -20,7 +20,7 @@
   "keywords":["short","url","shortener","tiny","uri","vanity","bit.ly"],
   "main":"./lib/short",
   "engines":{
-    "node":">=0.8.0"
+    "node":">=0.10.0"
   },
   "dependencies":{
     "node-promise":"0.5.8",
