@@ -1,6 +1,6 @@
 {
   "name":"short",
-  "version":"2.2.0",
+  "version":"2.3.0",
   "author":"Edward Hotchkiss <edwardhotchkiss@me.com>",
   "description":"Node.js URL Shortener backed by Mongoose.js",
   "contributors":[
