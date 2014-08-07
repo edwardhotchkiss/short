@@ -100,3 +100,4 @@ Copyright (c) 2011-2013, Edward Hotchkiss.
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/edwardhotchkiss/short/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+[0]: http://edwardhotchkiss.com/
