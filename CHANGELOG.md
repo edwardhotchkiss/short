@@ -1,4 +1,12 @@
 
+2.4.0 / 2014-09-06
+==================
+
+  * Merge pull request #26 from pwmckenna/patch-1
+  * Expose the hash as part of the api
+  * Merge pull request #24 from knownasilya/patch-1
+  * Fix author link
+
 2.3.0 / 2014-07-01 
 ==================
 
