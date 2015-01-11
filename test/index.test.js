@@ -28,7 +28,7 @@ vows.describe('general module tests').addBatch({
     },
     'short should be an object': function(topic) {
       assert.isObject(topic);
-    },
+    }
   },
 
   'when creating a short url and then retrieving it':{
@@ -58,6 +58,28 @@ vows.describe('general module tests').addBatch({
     },
     'and shortURL.URL should be "http://nodejs.org/"':function(error, ShortURLObject) {
       assert.equal(ShortURLObject.URL, 'http://nodejs.org/');
+    }
+  },
+
+  'when creaeting a short url and specify the hash': {
+    topic: function () {
+      var
+        specifiedHash = 'google',
+        context = this;
+      short.generate({
+        hash: specifiedHash,
+        URL: 'https://www.google.com'
+      }).then(function (shortURLObject) {
+          context.callback(null, shortURLObject);
+        }, function (err) {
+          context.callback(err, null);
+        });
+    },
+    'and shortURL.URL should be "https://www.google.com"': function (err, shortURLObject) {
+      assert.equal(shortURLObject.URL, 'https://www.google.com');
+    },
+    'and shortURL.hash should match original hash': function (err, shortURLObject) {
+      assert.equal(shortURLObject.hash, 'google');
     }
   },
 
