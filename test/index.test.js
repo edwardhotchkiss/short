@@ -83,6 +83,29 @@ vows.describe('general module tests').addBatch({
     }
   },
 
+  'when creating a short url for an existing url and specifying the hash': {
+    topic: function () {
+      var context = this, url = 'http://www.nyan.cat/';
+      short.generate({
+        URL: url
+      })
+        .then(function () {
+          return short.generate({
+            hash: 'nyan',
+            URL: url
+          });
+        })
+        .then(function (shortUrlObject) {
+          context.callback(null, shortUrlObject);
+        }, function (err) {
+          context.callback(err, null);
+        });
+    },
+    'shortURL.hash should match the specified hash': function (err, shortURLObject) {
+      assert.equal(shortURLObject.hash, 'nyan');
+    }
+  },
+
   'when .list()ing Shortened URLs':{
     topic: function() {
       var context = this;
