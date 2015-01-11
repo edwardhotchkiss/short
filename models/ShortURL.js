@@ -16,7 +16,7 @@ options = {
 
 ShortURLSchema = new Schema({
   id         : { type : ObjectId },
-  URL        : { type : String, unique: true },
+  URL        : { type : String, unique: false },
   hash       : { type : String, unique: true },
   hits       : { type : Number, default: 0 },
   data       : { type : Schema.Types.Mixed },
