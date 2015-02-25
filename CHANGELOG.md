@@ -1,4 +1,12 @@
 
+2.5.0 / 2015-02-25
+==================
+
+  * Merge pull request #29 from matmar10/master
+  * resolves issue #30 - remove unique index on URL; create a new document when existing URL and new hash is specified
+  * Reproduces issue #30 - Specifying hash has no effect for pre-existing URL
+  * add test case for specifying hash; resolves #28
+
 2.4.0 / 2014-09-06
 ==================
 
