@@ -10,7 +10,8 @@
     { "name": "Chris Lynch", "github":"https://github.com/lynchseattle" },
     { "name": "CashLee", "github": "https://github.com/lbj96347" },
     { "name": "Patrick Williams", "github": "https://github.com/pwmckenna" },
-    { "name": "Niklas Nihlén", "github": "https://github.com/nippe" }
+    { "name": "Niklas Nihlén", "github": "https://github.com/nippe" },
+    { "name": "Matt Roman", "github": "https://github.com/romanmt" }
   ],
   "homepage": "http://edwardhotchkiss.github.com/short",
   "repository":{
