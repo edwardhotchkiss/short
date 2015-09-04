@@ -1,17 +1,18 @@
 {
   "name":"short",
-  "version":"2.5.1",
-  "author":"Edward Hotchkiss <edwardhotchkiss@me.com>",
+  "version":"2.5.2",
+  "author":"Edward Hotchkiss <edward@edwardhotchkiss.com>",
   "description":"Node.js URL Shortener backed by Mongoose.js",
   "contributors":[
-    { "name": "Edward Hotchkiss", "email": "edwardhotchkiss@me.com" },
+    { "name": "Edward Hotchkiss", "email": "edward@edwardhotchkiss.com" },
     { "name": "Kevin Roth", "github": "http://github.com/thinkroth" },
     { "name": "Chase Brammer", "github":"https://github.com/cbrammer" },
     { "name": "Chris Lynch", "github":"https://github.com/lynchseattle" },
     { "name": "CashLee", "github": "https://github.com/lbj96347" },
     { "name": "Patrick Williams", "github": "https://github.com/pwmckenna" },
     { "name": "Niklas Nihlén", "github": "https://github.com/nippe" },
-    { "name": "Matt Roman", "github": "https://github.com/romanmt" }
+    { "name": "Matt Roman", "github": "https://github.com/romanmt" },
+    { "name": "Jan Paul Erkelens", "github": "https://github.com/jperkelens" }
   ],
   "homepage": "http://edwardhotchkiss.github.com/short",
   "repository":{
