@@ -1,4 +1,18 @@
 
+2.5.2 / 2015-09-04
+==================
+
+  * Merge pull request #33 from jperkelens/master
+  * Only connects if current state is disconnected
+
+2.5.1 / 2015-09-02
+==================
+
+  * Merge pull request #32 from romanmt/mongo-v-bump
+  * Adding romanmt as a contributor
+  * Merge pull request #31 from romanmt/mongo-v-bump
+  * Bump mongoose version in order to support mongo 3.0 auth
+
 2.5.0 / 2015-02-25
 ==================
 
