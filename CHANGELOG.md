@@ -1,4 +1,17 @@
 
+2.6.0 / 2015-10-21
+==================
+
+  * [dist, contribs] bumped v, added @t27 to contribs
+  * Merge pull request #37 from t27/master
+  * Added an update call to update the URL or data of a preexisting hash
+  * Merge pull request #34 from datermine/patch-2
+  * Fix bug with missing update var & unnecessary update.
+  * [docs, changelog] updated
+  * [dist, bump] add @jperkelens to contributors, bump v
+  * Merge pull request #33 from jperkelens/master
+  * Only connects if current state is disconnected
+
 2.5.2 / 2015-09-04
 ==================
 
