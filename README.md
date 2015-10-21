@@ -82,6 +82,38 @@ listURLsPromise.then(function(URLsDocument) {
 });
 ```
 
+**Updating the URL or the data fields of an existing Short URL hash**
+
+```javascript
+// Basically, update works like this
+var updatePromise = short.update(hash, updateData);
+// hash => Short url hashcode generated using short.generate()
+// updateData => An object consisting of the new URL and/or the new data object. 
+//               If a key already exists in the current data object, it's value is updated, 
+//               otherwise, it is added and saved to the data object
+
+//This function returns a promise which on resolution returns the new updated object as an argument.
+```
+Here's some working code. `hash` is assumed to be given 
+```javascript
+// The basic Initialisation, Connection, Short URL generation and 
+// retrieval remains the same as depicted in previous examples
+
+// the variable hash contains the short url hash code generated using short.generate()
+var updatePromise = short.update(hash,{
+  URL : 'http://www.youtube.com/watch?v=qvsgGtivCgs',
+  data: {
+    'type' : 'movie-trailer',
+    'movie': 'Back To The Future'
+  }
+});
+updatePromise.then(function(ShortURLObject) {
+  console.log('New URL:', ShortURLObject.URL, '\nNew data:', ShortURLObject.data);
+}, function(error) {
+  console.log('Error', error);
+});
+```
+
 ## Contribute
 
   1. Fork
