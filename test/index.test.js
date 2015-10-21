@@ -61,7 +61,7 @@ vows.describe('general module tests').addBatch({
     }
   },
 
-  'when creaeting a short url and specify the hash': {
+  'when creating a short url and specify the hash': {
     topic: function () {
       var
         specifiedHash = 'google',
@@ -125,6 +125,52 @@ vows.describe('general module tests').addBatch({
     'and URLs should be an array of objects':function(error, URLs) {
       assert.isArray(URLs);
     }
-  }
+  },
+
+  'when creating a short url with data, updating and retrieving it':{
+    topic:function() {
+      var context = this;
+      var generatePromise = short.generate({
+        URL : 'https://www.youtube.com/watch?v=qvsgGtivCgs',
+        data: {
+          'type':'trailer'
+        }
+       });
+      generatePromise.then(function(ShortURLObject) {
+        var updatePromise = short.update(ShortURLObject.hash,{
+          URL : 'http://www.youtube.com/watch?v=qvsgGtivCgs',
+          data: {
+            'type' : 'movie-trailer',
+            'movie': 'Back To The Future'
+          }
+        });
+        updatePromise.then(function(ShortURLObject) {
+          context.callback(null, ShortURLObject);
+        }, function(error) {
+          context.callback(error, null);
+        });
+      }, function(error) {
+        context.callback(error, null);
+      });
+    },
+    'there should be no errors':function(error, ShortURLObject) {
+      assert.isNull(error);
+    },
+    'shortURL should be defined':function(error, ShortURLObject) {
+      assert.isNotNull(ShortURLObject);
+    },
+    'shortURL should be an object':function(error, ShortURLObject) {
+      assert.isObject(ShortURLObject);
+    },
+    'shortURL.URL should be "http://www.youtube.com/watch?v=qvsgGtivCgs"':function(error, ShortURLObject) {
+      assert.equal(ShortURLObject.URL, 'http://www.youtube.com/watch?v=qvsgGtivCgs');
+    },
+    'shortURL.data.type should be movie-trailer':function(error, ShortURLObject) {
+      assert.equal(ShortURLObject.data.type, 'movie-trailer');
+    },
+    'shortURL.data.movie should be Back To The Future':function(error, ShortURLObject) {
+      assert.equal(ShortURLObject.data.movie, 'Back To The Future');
+    },
+  },
 
 }).export(module);
