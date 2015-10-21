@@ -1,6 +1,6 @@
 {
   "name":"short",
-  "version":"2.5.2",
+  "version":"2.6.0",
   "author":"Edward Hotchkiss <edward@edwardhotchkiss.com>",
   "description":"Node.js URL Shortener backed by Mongoose.js",
   "contributors":[
@@ -12,7 +12,8 @@
     { "name": "Patrick Williams", "github": "https://github.com/pwmckenna" },
     { "name": "Niklas Nihlén", "github": "https://github.com/nippe" },
     { "name": "Matt Roman", "github": "https://github.com/romanmt" },
-    { "name": "Jan Paul Erkelens", "github": "https://github.com/jperkelens" }
+    { "name": "Jan Paul Erkelens", "github": "https://github.com/jperkelens" },
+    { "name": "Tarang Shah", "github": "https://github.com/t27" }
   ],
   "homepage": "http://edwardhotchkiss.github.com/short",
   "repository":{
@@ -35,10 +36,10 @@
   "bugs": {
     "url": "https://github.com/edwardhotchkiss/short/issues"
   },
-  "licenses":[{
+  "license":{
     "type":"MIT",
     "url":"http://github.com/edwardhotchkiss/short/LICENSE"
-  }],
+  },
   "scripts":{
     "test":"vows test/*.test.js --spec"
   }
