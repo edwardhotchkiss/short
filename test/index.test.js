@@ -144,8 +144,13 @@ vows.describe('general module tests').addBatch({
             'movie': 'Back To The Future'
           }
         });
-        updatePromise.then(function(ShortURLObject) {
-          context.callback(null, ShortURLObject);
+        updatePromise.then(function(updatedObject) {
+          retrievePromise = short.retrieve(updatedObject.hash);
+          retrievePromise.then(function(ShortURLObject) {
+            context.callback(null, ShortURLObject);
+          }, function(error) {
+            context.callback(error, null);
+          });
         }, function(error) {
           context.callback(error, null);
         });
