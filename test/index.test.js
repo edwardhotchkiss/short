@@ -14,7 +14,14 @@ mongoose.set('debug', true);
  * @description connect to mongodb
  */
 
-short.connect('mongodb://localhost/short');
+var options = {
+
+    /* uncomment this if using auth */
+//     user: 'test',
+//     pass: 'test'
+};
+
+short.connect('mongodb://localhost/short',options);
 
 /**
  * @description add suites to vows
