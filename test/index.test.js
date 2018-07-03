@@ -21,7 +21,7 @@ var options = {
 //     pass: 'test'
 };
 
-short.connect('mongodb://localhost/short',options);
+short.connect('mongodb://localhost:27017/short',options);
 
 /**
  * @description add suites to vows
